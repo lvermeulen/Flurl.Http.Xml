@@ -1,8 +1,11 @@
-# Flurl.Http.Xml
-Extension for Flurl.Http to support XML
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Flurl.Http.Xml.Tests.Models;
+using NUnit.Framework;
 
-Usage:
-
+namespace Flurl.Http.Xml.Tests
+{
     [TestFixture]
     public class RealHttpTests
     {
@@ -12,7 +15,7 @@ Usage:
             var result = "https://query.yahooapis.com/v1/public/yql"
                 .SetQueryParam("q", "select wind from weather.forecast where woeid=2460286")
                 .SetQueryParam("format", "xml")
-                .GetXmlAsync<YahooWeatherModels.Query>()
+                .GetXmlAsync<Query>()
                 .Result;
 
             Assert.IsNotNull(result);
@@ -28,4 +31,4 @@ Usage:
             Assert.AreEqual("Test", result.Text);
         }
     }
-
+}

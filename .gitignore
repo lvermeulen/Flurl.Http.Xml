@@ -1,0 +1,6 @@
+*.dll
+*.config
+*.pdb
+*.xml
+src/Flurl.Http.Xml.Tests/obj/
+src/packages/
