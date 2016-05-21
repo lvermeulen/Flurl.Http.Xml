@@ -4,3 +4,4 @@
 *.xml
 src/Flurl.Http.Xml.Tests/obj/
 src/packages/
+*.nupkg

@@ -16,6 +16,6 @@
       </dependencies>
   </metadata>
   <files>
-      <file src="\Flurl.Http.Xml\bin\Release\Flurl.Http.Xml.dll" target="lib\net45" />
+      <file src="..\Flurl.Http.Xml\bin\Release\Flurl.Http.Xml.dll" target="lib\net45" />
   </files>
 </package>
