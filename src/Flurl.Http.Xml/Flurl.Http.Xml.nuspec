@@ -9,6 +9,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>XML extensions for Flurl.Http</description>
     <copyright>Copyright 2016</copyright>
+    <projectUrl>https://github.com/lvermeulen/Flurl.Http.Xml</projectUrl>
     <tags>Flurl Http Xml</tags>
       <dependencies>
           <dependency id="Flurl" />
