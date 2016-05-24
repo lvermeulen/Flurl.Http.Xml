@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Flurl.Http.Xml
 {
@@ -32,38 +33,19 @@ namespace Flurl.Http.Xml
         /// Sends an asynchronous GET request.
         /// </summary>
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <returns>A Task whose result is the XML response body deserialized to a dynamic.</returns>
-        public static Task<dynamic> GetXmlAsync(this Url url, CancellationToken cancellationToken)
+        /// <returns>A Task whose result is the XML response body parsed into an XDocument.</returns>
+        public static Task<XDocument> GetXDocumentlAsync(this Url url, CancellationToken cancellationToken)
         {
-            return new FlurlClient(url, true).GetXmlAsync(cancellationToken);
+            return new FlurlClient(url, true).GetXDocumentAsync(cancellationToken);
         }
 
         /// <summary>
         /// Sends an asynchronous GET request.
         /// </summary>
-        /// <returns>A Task whose result is the XML response body deserialized to a dynamic.</returns>
-        public static Task<dynamic> GetXmlAsync(this Url url)
+        /// <returns>A Task whose result is the XML response body parsed into an XDocument.</returns>
+        public static Task<XDocument> GetXDocumentAsync(this Url url)
         {
-            return new FlurlClient(url, true).GetXmlAsync();
-        }
-
-        /// <summary>
-        /// Sends an asynchronous GET request.
-        /// </summary>
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <returns>A Task whose result is the XML response body deserialized to a list of dynamics.</returns>
-        public static Task<IList<dynamic>> GetXmlListAsync(this Url url, CancellationToken cancellationToken)
-        {
-            return new FlurlClient(url, true).GetXmlListAsync(cancellationToken);
-        }
-
-        /// <summary>
-        /// Sends an asynchronous GET request.
-        /// </summary>
-        /// <returns>A Task whose result is the XML response body deserialized to a list of dynamics.</returns>
-        public static Task<IList<dynamic>> GetXmlListAsync(this Url url)
-        {
-            return new FlurlClient(url, true).GetXmlListAsync();
+            return new FlurlClient(url, true).GetXDocumentAsync();
         }
 
         /// <summary>
@@ -86,26 +68,5 @@ namespace Flurl.Http.Xml
         {
             return new FlurlClient(url, true).PostXmlAsync(data);
         }
-
-        ///// <summary>
-        ///// Creates a FlurlClient from the URL and sends an asynchronous POST request.
-        ///// </summary>
-        ///// <param name="data">Contents of the request body.</param>
-        ///// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        ///// <returns>A Task whose result is the received HttpResponseMessage.</returns>
-        //public static Task<HttpResponseMessage> PostXmlAsync(this string url, object data, CancellationToken cancellationToken)
-        //{
-        //    return new FlurlClient(url, true).PostXmlAsync(data, cancellationToken);
-        //}
-
-        ///// <summary>
-        ///// Creates a FlurlClient from the URL and sends an asynchronous POST request.
-        ///// </summary>
-        ///// <param name="data">Contents of the request body.</param>
-        ///// <returns>A Task whose result is the received HttpResponseMessage.</returns>
-        //public static Task<HttpResponseMessage> PostXmlAsync(this string url, object data)
-        //{
-        //    return new FlurlClient(url, true).PostXmlAsync(data);
-        //}
     }
 }
