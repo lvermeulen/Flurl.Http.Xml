@@ -7,22 +7,23 @@ Usage:
     public class RealHttpTests
     {
         [Test]
-        public void GetXml()
+        public async Task GetXml()
         {
-            var result = "https://query.yahooapis.com/v1/public/yql"
+            var result = await "https://query.yahooapis.com/v1/public/yql"
                 .SetQueryParam("q", "select wind from weather.forecast where woeid=2460286")
                 .SetQueryParam("format", "xml")
-                .GetXmlAsync<YahooWeatherModels.Query>()
-                .Result;
+                .GetXmlAsync<YahooWeatherModels.Query>();
 
             Assert.IsNotNull(result);
             Assert.IsNotNullOrEmpty(result.Results.Channel.Wind.Chill);
         }
 
         [Test]
-        public void PostXml()
+        public async Task PostXml()
         {
-            var result = "http://httpbin.org/post".PostXmlAsync(new TestModel { Number = 3, Text = "Test" }).ReceiveXmlFromJsonAsync<TestModel>(json => json.data).Result;
+            var result = await "http://httpbin.org/post"
+                .PostXmlAsync(new TestModel { Number = 3, Text = "Test" })
+                .ReceiveXml<TestModel>();
 
             Assert.AreEqual(3, result.Number);
             Assert.AreEqual("Test", result.Text);
