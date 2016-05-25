@@ -34,7 +34,7 @@ namespace Flurl.Http.Xml
         /// </summary>
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>A Task whose result is the XML response body parsed into an XDocument.</returns>
-        public static Task<XDocument> GetXDocumentlAsync(this Url url, CancellationToken cancellationToken)
+        public static Task<XDocument> GetXDocumentAsync(this Url url, CancellationToken cancellationToken)
         {
             return new FlurlClient(url, true).GetXDocumentAsync(cancellationToken);
         }
