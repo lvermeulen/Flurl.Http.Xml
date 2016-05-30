@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Dynamic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Xml;
 using System.Xml.Linq;
+using System.Xml.XPath;
 
 namespace Flurl.Http.Xml
 {
@@ -59,6 +60,28 @@ namespace Flurl.Http.Xml
                 call.Exception = ex;
                 throw new FlurlHttpException(call, s, ex);
             }
+        }
+
+        /// <summary>
+        /// Parses XML-formatted HTTP response body into a collection of XElements. Intended to chain off an async call.
+        /// </summary>
+        /// <returns>A Task whose result is a collection of XElements from an XDocument containing XML data from the response body.</returns>
+        /// <example>d = await url.PostAsync(data).ReceiveXElementsFromXPath(xpathExpression)</example>
+        public static async Task<IEnumerable<XElement>> ReceiveXElementsFromXPath(this Task<HttpResponseMessage> response, string expression)
+        {
+            var doc = await response.ReceiveXDocument();
+            return doc.XPathSelectElements(expression);
+        }
+
+        /// <summary>
+        /// Parses XML-formatted HTTP response body into a collection of XElements. Intended to chain off an async call.
+        /// </summary>
+        /// <returns>A Task whose result is a collection of XElements from an XDocument containing XML data from the response body.</returns>
+        /// <example>d = await url.PostAsync(data).ReceiveXElementsFromXPath(xpathExpression, namespaceResolver)</example>
+        public static async Task<IEnumerable<XElement>> ReceiveXElementsFromXPath(this Task<HttpResponseMessage> response, string expression, IXmlNamespaceResolver resolver)
+        {
+            var doc = await response.ReceiveXDocument();
+            return doc.XPathSelectElements(expression, resolver);
         }
     }
 }

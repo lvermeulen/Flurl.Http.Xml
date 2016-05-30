@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Xml;
 using System.Xml.Linq;
 
 namespace Flurl.Http.Xml
@@ -46,6 +47,44 @@ namespace Flurl.Http.Xml
         public static Task<XDocument> GetXDocumentAsync(this string url)
         {
             return new FlurlClient(url, true).GetXDocumentAsync();
+        }
+
+        /// <summary>
+		/// Sends an asynchronous GET request.
+		/// </summary>
+		/// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+		/// <returns>A Task whose result is the XML response body parsed into a collection of XElements.</returns>
+		public static Task<IEnumerable<XElement>> GetXElementsFromXPath(this string url, string expression, CancellationToken cancellationToken)
+        {
+            return new FlurlClient(url, true).GetXElementsFromXPath(expression, cancellationToken);
+        }
+
+        /// <summary>
+        /// Sends an asynchronous GET request.
+        /// </summary>
+        /// <returns>A Task whose result is the XML response body parsed into a collection of XElements.</returns>
+        public static Task<IEnumerable<XElement>> GetXElementsFromXPath(this string url, string expression)
+        {
+            return new FlurlClient(url, true).GetXElementsFromXPath(expression);
+        }
+
+        /// <summary>
+		/// Sends an asynchronous GET request.
+		/// </summary>
+		/// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+		/// <returns>A Task whose result is the XML response body parsed into a collection of XElements.</returns>
+		public static Task<IEnumerable<XElement>> GetXElementsFromXPath(this string url, string expression, IXmlNamespaceResolver resolver, CancellationToken cancellationToken)
+        {
+            return new FlurlClient(url, true).GetXElementsFromXPath(expression, resolver, cancellationToken);
+        }
+
+        /// <summary>
+        /// Sends an asynchronous GET request.
+        /// </summary>
+        /// <returns>A Task whose result is the XML response body parsed into a collection of XElements.</returns>
+        public static Task<IEnumerable<XElement>> GetXElementsFromXPath(this string url, string expression, IXmlNamespaceResolver resolver)
+        {
+            return new FlurlClient(url, true).GetXElementsFromXPath(expression, resolver);
         }
 
         /// <summary>
