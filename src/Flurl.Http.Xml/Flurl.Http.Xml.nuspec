@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Flurl.Http.Xml</id>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
     <title>Flurl.Http extensions for XML</title>
     <authors>Luk Vermeulen</authors>
     <owners>Luk Vermeulen</owners>
