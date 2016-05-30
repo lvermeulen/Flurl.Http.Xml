@@ -4,6 +4,7 @@ Extension for Flurl.Http to support XML
 ##Features:
 * Get, post and receive XML models
 * Receive XDocument
+* Receive XElements with XPath
 
 ##Usage:
 
