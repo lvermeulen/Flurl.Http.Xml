@@ -1,5 +1,5 @@
-# Flurl.Http.Xml
-Extension for Flurl.Http to support XML
+# Flurl.Http.Xml [![Build status](https://ci.appveyor.com/api/projects/status/16qwl13xsaylb450?svg=true)](https://ci.appveyor.com/project/lvermeulen/flurl-http-xml) [![license](https://img.shields.io/github/license/lvermeulen/Flurl.Http.Xml.svg?maxAge=2592000)]() [![NuGet](https://img.shields.io/nuget/v/Flurl.Http.Xml.svg?maxAge=2592000)]()
+XML extension to the excellent [Flurl](https://github.com/tmenier/Flurl) by Todd Menier
 
 ##Features:
 * Get, post and receive XML models
