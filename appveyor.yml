@@ -1,17 +1,6 @@
 version: 1.2.0.{build}
 pull_requests:
   do_not_increment_build_number: true
-configuration: Debug
-platform: Any CPU
-before_build:
-- cmd: >-
-    cd src
-
-    nuget restore
-
-    cd ..
-build:
-  verbosity: minimal
 configuration: Release
 platform: Any CPU
 before_build:
