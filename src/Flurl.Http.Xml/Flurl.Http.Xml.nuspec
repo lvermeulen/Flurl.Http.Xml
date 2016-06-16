@@ -2,19 +2,21 @@
 <package >
   <metadata>
     <id>Flurl.Http.Xml</id>
-    <version>1.2.0</version>
-    <title>Flurl.Http extensions for XML</title>
+    <version>$version$</version>
+    <title>XML extensions to Flurl.Http</title>
     <authors>Luk Vermeulen</authors>
     <owners>Luk Vermeulen</owners>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>XML extensions for Flurl.Http</description>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>XML extensions to Flurl.Http</description>
     <copyright>Copyright 2016</copyright>
     <projectUrl>https://github.com/lvermeulen/Flurl.Http.Xml</projectUrl>
+    <licenseUrl>https://github.com/lvermeulen/Flurl.Http.Xml/blob/master/LICENSE</licenseUrl>
+    <iconUrl>http://i.imgur.com/llEKpRL.png?1</iconUrl>
     <tags>Flurl Http Xml</tags>
-      <dependencies>
-          <dependency id="Flurl" />
-          <dependency id="Flurl.Http" />
-      </dependencies>
+    <dependencies>
+        <dependency id="Flurl" />
+        <dependency id="Flurl.Http" />
+    </dependencies>
   </metadata>
   <files>
       <file src="..\Flurl.Http.Xml\bin\Release\Flurl.Http.Xml.dll" target="lib\net45" />
