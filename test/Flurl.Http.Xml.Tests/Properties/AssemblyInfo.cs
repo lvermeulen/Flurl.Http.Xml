@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Flurl.Http.Xml")]
+[assembly: AssemblyProduct("Flurl.Http.Xml.Tests")]
 [assembly: AssemblyTrademark("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible
@@ -16,4 +16,4 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("b9826cf6-17dd-4d2d-a6bd-f15cfa18f9cb")]
+[assembly: Guid("7ba9bc27-1501-47ea-90ff-bcdbd25ca8b8")]

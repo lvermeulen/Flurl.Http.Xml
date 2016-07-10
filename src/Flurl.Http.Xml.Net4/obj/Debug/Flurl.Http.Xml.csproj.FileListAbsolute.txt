@@ -1,0 +1,14 @@
+C:\gitrepo\Flurl.Http.Xml\src\Flurl.Http.Xml\bin\Debug\Flurl.Http.Xml.dll.config
+C:\gitrepo\Flurl.Http.Xml\src\Flurl.Http.Xml\bin\Debug\Flurl.Http.Xml.dll
+C:\gitrepo\Flurl.Http.Xml\src\Flurl.Http.Xml\bin\Debug\Flurl.Http.Xml.pdb
+C:\gitrepo\Flurl.Http.Xml\src\Flurl.Http.Xml\bin\Debug\Flurl.dll
+C:\gitrepo\Flurl.Http.Xml\src\Flurl.Http.Xml\bin\Debug\Flurl.Http.dll
+C:\gitrepo\Flurl.Http.Xml\src\Flurl.Http.Xml\bin\Debug\Newtonsoft.Json.dll
+C:\gitrepo\Flurl.Http.Xml\src\Flurl.Http.Xml\bin\Debug\Flurl.pdb
+C:\gitrepo\Flurl.Http.Xml\src\Flurl.Http.Xml\bin\Debug\Flurl.xml
+C:\gitrepo\Flurl.Http.Xml\src\Flurl.Http.Xml\bin\Debug\Flurl.Http.pdb
+C:\gitrepo\Flurl.Http.Xml\src\Flurl.Http.Xml\bin\Debug\Flurl.Http.xml
+C:\gitrepo\Flurl.Http.Xml\src\Flurl.Http.Xml\bin\Debug\Newtonsoft.Json.xml
+C:\gitrepo\Flurl.Http.Xml\src\Flurl.Http.Xml\obj\Debug\Flurl.Http.Xml.csprojResolveAssemblyReference.cache
+C:\gitrepo\Flurl.Http.Xml\src\Flurl.Http.Xml\obj\Debug\Flurl.Http.Xml.dll
+C:\gitrepo\Flurl.Http.Xml\src\Flurl.Http.Xml\obj\Debug\Flurl.Http.Xml.pdb
