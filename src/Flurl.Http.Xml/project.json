@@ -1,6 +1,9 @@
 ﻿{
   "title": "Flurl.Http.Xml",
   "version": "1.0.0-*",
+  "authors": [ "Luk Vermeulen" ],
+  "copyright": "Copyright 2016",
+  "description": "XML extensions to Flurl.Http",
 
   "buildOptions": {
     "compile": {
@@ -10,6 +13,21 @@
     "outputName": "Flurl.Http.Xml",
     "xmlDoc": false
   },
+
+  "packOptions": {
+    "owners": [ "Luk Vermeulen" ],
+    "requireLicenseAcceptance": true,
+    "summary": "XML extensions to Flurl.Http",
+    "tags": [ "Flurl", "Http", "Xml" ],
+    "projectUrl": "https://github.com/lvermeulen/Flurl.Http.Xml",
+    "licenseUrl": "https://github.com/lvermeulen/Flurl.Http.Xml/blob/master/LICENSE",
+    "iconUrl": "http://i.imgur.com/llEKpRL.png?1",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/lvermeulen/Flurl.Http.Xml"
+    }
+  },
+
   "dependencies": {
     "Flurl.Http": "1.0.0-beta7"
   },
@@ -55,17 +73,5 @@
         "System.Xml.XPath.XDocument": "4.0.1"
       }
     }
-    //"netcoreapp1.0": {
-    //  "dependencies": {
-    //    "System.Xml.XDocument": "4.0.11",
-    //    "System.Xml.XmlSerializer": "4.0.11",
-    //    "System.Xml.XPath": "4.0.1",
-    //    "System.Xml.XPath.XDocument": "4.0.1",
-    //    "Microsoft.NETCore.App": {
-    //      "type": "platform",
-    //      "version": "1.0.0"
-    //    }
-    //  }
-    //}
   }
 }
