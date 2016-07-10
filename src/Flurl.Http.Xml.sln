@@ -7,7 +7,6 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Flurl.Http.Xml.Shared", "Fl
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F2114366-0322-434F-91D3-A25939F0CFA7}"
 	ProjectSection(SolutionItems) = preProject
-		Flurl.Http.Xml.nuspec = Flurl.Http.Xml.nuspec
 		global.json = global.json
 	EndProjectSection
 EndProject
