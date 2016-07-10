@@ -1,5 +1,4 @@
-﻿-d:LIBLOG_PORTABLE
--d:DEBUG
+﻿-d:DEBUG
 -d:TRACE
 -d:NETCOREAPP1_0
 -nowarn:CS1701
@@ -12,6 +11,8 @@
 "C:\gitrepo\Flurl.Http.Xml\feature.vnext\test\Flurl.Http.Xml.Tests\obj\Debug\netcoreapp1.0\dotnet-compile.assemblyinfo.cs"
 -out:"C:\gitrepo\Flurl.Http.Xml\feature.vnext\test\Flurl.Http.Xml.Tests\bin\Debug\netcoreapp1.0\Flurl.Http.Xml.Tests.dll"
 -r:"C:\Users\Luk\.nuget\packages\dotnet-test-xunit\2.2.0-preview2-build1029\lib\netcoreapp1.0\dotnet-test-xunit.dll"
+-r:"C:\Users\Luk\.nuget\packages\Flurl\2.1.0-beta7\lib\netstandard1.4\Flurl.dll"
+-r:"C:\Users\Luk\.nuget\packages\Flurl.Http\1.0.0-beta7\lib\netstandard1.4\Flurl.Http.dll"
 -r:"C:\Users\Luk\.nuget\packages\Microsoft.CSharp\4.0.1\ref\netstandard1.0\Microsoft.CSharp.dll"
 -r:"C:\Users\Luk\.nuget\packages\Microsoft.DiaSymReader\1.0.8\lib\netstandard1.1\Microsoft.DiaSymReader.dll"
 -r:"C:\Users\Luk\.nuget\packages\Microsoft.DotNet.InternalAbstractions\1.0.0\lib\netstandard1.3\Microsoft.DotNet.InternalAbstractions.dll"
@@ -88,6 +89,7 @@
 -r:"C:\Users\Luk\.nuget\packages\System.Security.Cryptography.X509Certificates\4.1.0\ref\netstandard1.4\System.Security.Cryptography.X509Certificates.dll"
 -r:"C:\Users\Luk\.nuget\packages\System.Security.Principal\4.0.1\ref\netstandard1.0\System.Security.Principal.dll"
 -r:"C:\Users\Luk\.nuget\packages\System.Text.Encoding\4.0.11\ref\netstandard1.3\System.Text.Encoding.dll"
+-r:"C:\Users\Luk\.nuget\packages\System.Text.Encoding.CodePages\4.0.1\ref\netstandard1.3\System.Text.Encoding.CodePages.dll"
 -r:"C:\Users\Luk\.nuget\packages\System.Text.Encoding.Extensions\4.0.11\ref\netstandard1.3\System.Text.Encoding.Extensions.dll"
 -r:"C:\Users\Luk\.nuget\packages\System.Text.RegularExpressions\4.1.0\ref\netstandard1.6\System.Text.RegularExpressions.dll"
 -r:"C:\Users\Luk\.nuget\packages\System.Threading\4.0.11\ref\netstandard1.3\System.Threading.dll"
@@ -100,6 +102,9 @@
 -r:"C:\Users\Luk\.nuget\packages\System.Threading.Timer\4.0.1\ref\netstandard1.2\System.Threading.Timer.dll"
 -r:"C:\Users\Luk\.nuget\packages\System.Xml.ReaderWriter\4.0.11\ref\netstandard1.3\System.Xml.ReaderWriter.dll"
 -r:"C:\Users\Luk\.nuget\packages\System.Xml.XDocument\4.0.11\ref\netstandard1.3\System.Xml.XDocument.dll"
+-r:"C:\Users\Luk\.nuget\packages\System.Xml.XmlSerializer\4.0.11\ref\netstandard1.3\System.Xml.XmlSerializer.dll"
+-r:"C:\Users\Luk\.nuget\packages\System.Xml.XPath\4.0.1\ref\netstandard1.3\System.Xml.XPath.dll"
+-r:"C:\Users\Luk\.nuget\packages\System.Xml.XPath.XDocument\4.0.1\ref\netstandard1.3\System.Xml.XPath.XDocument.dll"
 -r:"C:\Users\Luk\.nuget\packages\xunit.abstractions\2.0.1-rc2\lib\netstandard1.0\xunit.abstractions.dll"
 -r:"C:\Users\Luk\.nuget\packages\xunit.assert\2.2.0-beta2-build3300\lib\netstandard1.0\xunit.assert.dll"
 -r:"C:\Users\Luk\.nuget\packages\xunit.extensibility.core\2.2.0-beta2-build3300\lib\netstandard1.0\xunit.core.dll"
