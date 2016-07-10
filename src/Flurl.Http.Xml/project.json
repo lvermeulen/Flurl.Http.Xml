@@ -11,7 +11,6 @@
     "xmlDoc": false
   },
   "dependencies": {
-    "Flurl": "2.1.0-beta7",
     "Flurl.Http": "1.0.0-beta7"
   },
 
@@ -43,19 +42,6 @@
         "System.Xml.XPath.XDocument": "4.0.1"
       }
     },
-    "netstandard1.5": {
-      "dependencies": {
-        "NETStandard.Library": "1.6.0",
-        "System.Dynamic.Runtime": "4.0.11",
-        "System.Net.Http": "4.1.0",
-        "System.Text.RegularExpressions": "4.1.0",
-        "System.Threading": "4.0.11",
-        "System.Xml.XDocument": "4.0.11",
-        "System.Xml.XmlSerializer": "4.0.11",
-        "System.Xml.XPath": "4.0.1",
-        "System.Xml.XPath.XDocument": "4.0.1"
-      }
-    },
     "netstandard1.6": {
       "dependencies": {
         "NETStandard.Library": "1.6.0",
@@ -68,18 +54,18 @@
         "System.Xml.XPath": "4.0.1",
         "System.Xml.XPath.XDocument": "4.0.1"
       }
-    },
-    "netcoreapp1.0": {
-      "dependencies": {
-        "System.Xml.XDocument": "4.0.11",
-        "System.Xml.XmlSerializer": "4.0.11",
-        "System.Xml.XPath": "4.0.1",
-        "System.Xml.XPath.XDocument": "4.0.1",
-        "Microsoft.NETCore.App": {
-          "type": "platform",
-          "version": "1.0.0"
-        }
-      }
     }
+    //"netcoreapp1.0": {
+    //  "dependencies": {
+    //    "System.Xml.XDocument": "4.0.11",
+    //    "System.Xml.XmlSerializer": "4.0.11",
+    //    "System.Xml.XPath": "4.0.1",
+    //    "System.Xml.XPath.XDocument": "4.0.1",
+    //    "Microsoft.NETCore.App": {
+    //      "type": "platform",
+    //      "version": "1.0.0"
+    //    }
+    //  }
+    //}
   }
 }
