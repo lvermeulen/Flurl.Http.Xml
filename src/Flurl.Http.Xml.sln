@@ -5,10 +5,6 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Flurl.Http.Xml.Shared", "Flurl.Http.Xml.Shared\Flurl.Http.Xml.Shared.shproj", "{16A3075D-B39A-44E4-9A4F-5855392B40C7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flurl.Http.Xml.Net4", "Flurl.Http.Xml.Net4\Flurl.Http.Xml.Net4.csproj", "{A7C7DCAF-4F2C-4C89-9511-4588B490D247}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flurl.Http.Xml.Tests.Net4", "Flurl.Http.Xml.Tests.Net4\Flurl.Http.Xml.Tests.Net4.csproj", "{109C9BF5-4306-460A-881B-D7C49F66C909}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F2114366-0322-434F-91D3-A25939F0CFA7}"
 	ProjectSection(SolutionItems) = preProject
 		global.json = global.json
@@ -27,14 +23,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A7C7DCAF-4F2C-4C89-9511-4588B490D247}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A7C7DCAF-4F2C-4C89-9511-4588B490D247}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A7C7DCAF-4F2C-4C89-9511-4588B490D247}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A7C7DCAF-4F2C-4C89-9511-4588B490D247}.Release|Any CPU.Build.0 = Release|Any CPU
-		{109C9BF5-4306-460A-881B-D7C49F66C909}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{109C9BF5-4306-460A-881B-D7C49F66C909}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{109C9BF5-4306-460A-881B-D7C49F66C909}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{109C9BF5-4306-460A-881B-D7C49F66C909}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7BA9BC27-1501-47EA-90FF-BCDBD25CA8B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7BA9BC27-1501-47EA-90FF-BCDBD25CA8B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7BA9BC27-1501-47EA-90FF-BCDBD25CA8B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
