@@ -1,26 +1,17 @@
 {
-  "version": "1.0.0-*",
+  "version": "1.0.0",
   "testRunner": "xunit",
-  "buildOptions": {
-    "compile": {
-      "include": "../../src/Flurl.Http.Xml.Shared/**/*.cs"
-    }
-  },
+
   "dependencies": {
-    "NETStandard.Library": "1.6.0",
-    "xunit": "2.2.0-beta2-build3300",
+    "xunit": "2.1.0",
     "dotnet-test-xunit": "2.2.0-preview2-build1029",
-    "Flurl.Http": "1.0.0-beta7"
+    "Flurl.Http.Xml": { "target": "project" }
   },
 
   "frameworks": {
-    "net451": { },
     "netcoreapp1.0": {
+      "imports": ["dotnet54"],
       "dependencies": {
-        "System.Xml.XDocument": "4.0.11",
-        "System.Xml.XmlSerializer": "4.0.11",
-        "System.Xml.XPath": "4.0.1",
-        "System.Xml.XPath.XDocument": "4.0.1",
         "Microsoft.NETCore.App": {
           "type": "platform",
           "version": "1.0.0"
