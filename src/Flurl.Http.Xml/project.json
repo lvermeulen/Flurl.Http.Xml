@@ -1,0 +1,46 @@
+﻿{
+  "title": "Flurl.Http.Xml",
+  "version": "1.0.0",
+  "authors": [ "Luk Vermeulen" ],
+  "copyright": "Copyright 2016",
+  "description": "XML extensions to Flurl.Http",
+
+  "buildOptions": {
+    "optimize": true,
+    "xmlDoc": true
+  },
+
+  "packOptions": {
+    "owners": [ "Luk Vermeulen" ],
+    "requireLicenseAcceptance": true,
+    "summary": "XML extensions to Flurl.Http",
+    "tags": [ "Flurl", "Http", "Xml" ],
+    "projectUrl": "https://github.com/lvermeulen/Flurl.Http.Xml",
+    "licenseUrl": "https://github.com/lvermeulen/Flurl.Http.Xml/blob/master/LICENSE",
+    "iconUrl": "http://i.imgur.com/llEKpRL.png?1",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/lvermeulen/Flurl.Http.Xml"
+    }
+  },
+
+  "dependencies": {
+    "Flurl.Http": "1.0.0-beta7"
+  },
+
+  "frameworks": {
+    "net45": {
+      "frameworkAssemblies": {
+        "System.Net.Http": "4.0.0",
+        "System.Xml": "4.0.0.0",
+        "System.Xml.Linq": "4.0.0.0"
+      }
+    },
+    "netstandard1.4": {
+      "dependencies": {
+        "System.Xml.XmlSerializer": "4.0.11",
+        "System.Xml.XPath.XDocument": "4.0.1"
+      }
+    }
+  }
+}

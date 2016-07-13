@@ -4,14 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using Flurl.Http.Xml.Tests.Models;
-using NUnit.Framework;
+using Xunit;
 
 namespace Flurl.Http.Xml.Tests
 {
-    [TestFixture]
     public class RealHttpTests
     {
-        [Test]
+        [Fact]
         public async Task GetXDocument()
         {
             var result = await "https://query.yahooapis.com/v1/public/yql"
@@ -27,29 +26,30 @@ namespace Flurl.Http.Xml.Tests
                 ?.Attribute("chill")
                 ?.Value;
 
-            Assert.IsNotNullOrEmpty(chill);
+            Assert.NotNull(chill);
+            Assert.NotEmpty(chill);
         }
 
-        [Test]
+        [Fact]
         public async Task PostXmlToModel()
         {
             var result = await "http://putsreq.com/JMG62khbf6IWRR8Bz9nU"
                 .PostXmlAsync(new TestModel { Number = 3, Text = "Test" })
                 .ReceiveXml<TestModel>();
 
-            Assert.AreEqual(3, result.Number);
-            Assert.AreEqual("Test", result.Text);
+            Assert.Equal(3, result.Number);
+            Assert.Equal("Test", result.Text);
         }
 
-        [Test]
+        [Fact]
         public async Task PostXmlToXDocument()
         {
             var result = await "http://putsreq.com/JMG62khbf6IWRR8Bz9nU"
                 .PostXmlAsync(new TestModel {Number = 3, Text = "Test"})
                 .ReceiveXDocument();
 
-            Assert.AreEqual("3", result?.Element("TestModel")?.Element("Number")?.Value);
-            Assert.AreEqual("Test", result?.Element("TestModel")?.Element("Text")?.Value);
+            Assert.Equal("3", result?.Element("TestModel")?.Element("Number")?.Value);
+            Assert.Equal("Test", result?.Element("TestModel")?.Element("Text")?.Value);
         }
     }
 }
