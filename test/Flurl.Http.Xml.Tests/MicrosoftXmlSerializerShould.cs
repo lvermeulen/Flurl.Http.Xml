@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Text;
 using System.Xml;
 using Flurl.Http.Xml.Tests.Models;
-using NUnit.Framework;
+using Xunit;
 
 namespace Flurl.Http.Xml.Tests
 {
-    [TestFixture]
     public class MicrosoftXmlSerializerShould
     {
         const string XML_WITHOUT_DECLARATION =
@@ -21,40 +17,39 @@ namespace Flurl.Http.Xml.Tests
 
         private MicrosoftXmlSerializer _serializer;
 
-        [TestFixtureSetUp]
-        public void TestFixtureSetup()
+        public MicrosoftXmlSerializerShould()
         {
             var settings = new XmlWriterSettings { Encoding = new UTF8Encoding(false, false), Indent = true, OmitXmlDeclaration = false };
             _serializer = new MicrosoftXmlSerializer(settings);
         }
 
-        [Test]
+        [Fact]
         public void Serialize()
         {
             var model = new TestModel { Number = 3, Text = "Test" };
             string s = _serializer.Serialize(model);
             model = _serializer.Deserialize<TestModel>(s);
 
-            Assert.AreEqual(3, model.Number);
-            Assert.AreEqual("Test", model.Text);
+            Assert.Equal(3, model.Number);
+            Assert.Equal("Test", model.Text);
         }
 
-        [Test]
+        [Fact]
         public void DeserializeWithDeclaration()
         {
             var model = _serializer.Deserialize<TestModel>(XML_WITH_DECLARATION);
 
-            Assert.AreEqual(3, model.Number);
-            Assert.AreEqual("Test", model.Text);
+            Assert.Equal(3, model.Number);
+            Assert.Equal("Test", model.Text);
         }
 
-        [Test]
+        [Fact]
         public void DeserializeWithoutDeclaration()
         {
             var model = _serializer.Deserialize<TestModel>(XML_WITHOUT_DECLARATION);
 
-            Assert.AreEqual(3, model.Number);
-            Assert.AreEqual("Test", model.Text);
+            Assert.Equal(3, model.Number);
+            Assert.Equal("Test", model.Text);
         }
     }
 }
