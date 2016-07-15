@@ -25,7 +25,7 @@
   },
 
   "dependencies": {
-    "Flurl.Http": "1.0.0-beta7"
+    "Flurl.Http": "1.0.0-beta8"
   },
 
   "frameworks": {
