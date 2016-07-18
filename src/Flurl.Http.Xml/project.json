@@ -6,8 +6,15 @@
   "description": "XML extensions to Flurl.Http",
 
   "buildOptions": {
-    "optimize": true,
     "xmlDoc": true
+  },
+
+  "configurations": {
+    "Release": {
+      "buildOptions": {
+        "optimize": true
+      }
+    }
   },
 
   "packOptions": {
@@ -25,7 +32,7 @@
   },
 
   "dependencies": {
-    "Flurl.Http": "1.0.0-beta8"
+    "Flurl.Http": "1.0.0"
   },
 
   "frameworks": {
