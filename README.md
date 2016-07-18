@@ -1,5 +1,5 @@
 ![Icon](http://i.imgur.com/llEKpRL.png?1) 
-# Flurl.Http.Xml [![Build status](https://ci.appveyor.com/api/projects/status/16qwl13xsaylb450?svg=true)](https://ci.appveyor.com/project/lvermeulen/flurl-http-xml) [![license](https://img.shields.io/github/license/lvermeulen/Flurl.Http.Xml.svg?maxAge=2592000)](https://github.com/lvermeulen/Flurl.Http.Xml/blob/master/LICENSE) [![NuGet](https://img.shields.io/nuget/v/Flurl.Http.Xml.svg?maxAge=2592000)](https://www.nuget.org/packages/Flurl.Http.Xml/) ![](https://img.shields.io/badge/.net-4.5-yellowgreen.svg) ![](https://img.shields.io/badge/netstandard-1.6-yellowgreen.svg)
+# Flurl.Http.Xml [![Build status](https://ci.appveyor.com/api/projects/status/16qwl13xsaylb450?svg=true)](https://ci.appveyor.com/project/lvermeulen/flurl-http-xml) [![license](https://img.shields.io/github/license/lvermeulen/Flurl.Http.Xml.svg?maxAge=2592000)](https://github.com/lvermeulen/Flurl.Http.Xml/blob/master/LICENSE) [![NuGet](https://img.shields.io/nuget/v/Flurl.Http.Xml.svg?maxAge=2592000)](https://www.nuget.org/packages/Flurl.Http.Xml/) ![](https://img.shields.io/badge/.net-4.5-yellowgreen.svg) ![](https://img.shields.io/badge/netstandard-1.4-yellowgreen.svg)
 XML extension to the excellent [Flurl](https://github.com/tmenier/Flurl) library
 
 ##Features:
