@@ -47,4 +47,3 @@ XML extension to the excellent [Flurl](https://github.com/tmenier/Flurl) library
 
 ##Thanks
 * [XML File](https://thenounproject.com/term/xml-file/320630/) icon by [Oliviu Stoian](https://thenounproject.com/smashicons/) from [The Noun Project](https://thenounproject.com)
-* [@kroniak](https://github.com/kroniak) for .NET Core ninjaness
