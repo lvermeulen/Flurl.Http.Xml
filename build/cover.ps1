@@ -6,9 +6,6 @@
 Write-Output "Starting code coverage with filter: $CoverFilter"
 
 $alwaysFilter = "-[xunit*]* -[Microsoft*]* -[dotnet*]* -[NuGet*]* -[Newtonsoft*]* -[Consul*]* -[Nancy*]* -[AngleSharp]* -[csc]* -[Anonymously*]*"
-#$actualFilter = "+[Flurl.Http.Xml*]* -[*]*.Logging.* -[*Tests]*" # while appveyor doesn't correctly give the entire filter string in environment, use this actual filter
-#Write-Output "Actually using filter: $actualFilter"
-#$filter = "$actualFilter $alwaysFilter"
 $filter = "$CoverFilter $alwaysFilter"
 
 $packagesPath = $env:USERPROFILE + "\.nuget\packages"
