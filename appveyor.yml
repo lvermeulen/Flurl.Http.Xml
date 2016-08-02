@@ -14,8 +14,8 @@ test_script:
 - ps: |
     if ($true)
     {
-        Invoke-Expression ".\build\test.ps1"
-        Invoke-Expression ".\build\cover.ps1 $env:COVERALLS_REPO_TOKEN $env:COVER_FILTER"
+        .\build\test.ps1
+        .\build\cover.ps1 "$env:COVERALLS_REPO_TOKEN" "$env:COVER_FILTER"
     }
 artifacts:
 - path: '**\*.nupkg'
