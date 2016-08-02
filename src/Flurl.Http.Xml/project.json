@@ -1,6 +1,6 @@
 ﻿{
   "title": "Flurl.Http.Xml",
-  "version": "1.0.0",
+  "version": "1.3.0",
   "authors": [ "Luk Vermeulen" ],
   "copyright": "Copyright 2016",
   "description": "XML extensions to Flurl.Http",

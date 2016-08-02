@@ -1,6 +1,6 @@
 param (
-	[string]$BuildVersionNumber=$(throw "-BuildVersionNumber is required."),
-	[string]$TagVersionNumber
+    [string]$BuildVersionNumber=$(throw "-BuildVersionNumber is required."),
+    [string]$TagVersionNumber
 )
 
 # set version number in package.json
@@ -8,13 +8,13 @@ Get-ChildItem -Path $PSScriptRoot\..\src -Filter project.json -Recurse | ForEach
     $ProjectJsonPath =  $_.FullName
     if ($TagVersionNumber){
         (gc -Path $ProjectJsonPath) `
-	        -replace "(?<=`"version`":\s`")[.\w-]*(?=`",)", "$TagVersionNumber" |
-	            sc -Path $ProjectJsonPath -Encoding UTF8
+            -replace "(?<=`"version`":\s`")[.\w-]*(?=`",)", "$TagVersionNumber" |
+                sc -Path $ProjectJsonPath -Encoding UTF8
     }
     else{
         (gc -Path $ProjectJsonPath) `
-	        -replace "(?<=`"version`":\s`")[.\w-]*(?=`",)", "$BuildVersionNumber" |
-	            sc -Path $ProjectJsonPath -Encoding UTF8
+            -replace "(?<=`"version`":\s`")[.\w-]*(?=`",)", "$BuildVersionNumber" |
+                sc -Path $ProjectJsonPath -Encoding UTF8
     }
 }
 

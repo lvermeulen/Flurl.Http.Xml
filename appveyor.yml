@@ -4,10 +4,19 @@ branches:
   - master
 pull_requests:
   do_not_increment_build_number: true
+environment:
+  COVERALLS_REPO_TOKEN:
+    secure: kDcf0mhCCCONpQVpeaA6M5qIuuLggG7lfv1tCMiZCzUmdjtmoIcwFaRQRf00bIdn
+  COVER_FILTER: '+[Flurl.Http.Xml*]* -[*]*.Logging.* -[*Tests]*'
 build_script:
 - ps: .\build\build.ps1 $env:APPVEYOR_BUILD_VERSION $env:APPVEYOR_REPO_TAG_NAME
 test_script:
-- ps: .\build\test.ps1
+- ps: |
+    if ($true)
+    {
+        Invoke-Expression ".\build\test.ps1"
+        Invoke-Expression ".\build\cover.ps1 $env:COVERALLS_REPO_TOKEN $env:COVER_FILTER"
+    }
 artifacts:
 - path: '**\*.nupkg'
 deploy:
