@@ -15,7 +15,7 @@ namespace Flurl.Http.Xml.Tests
 
         const string XML_WITH_DECLARATION = @"<?xml version=""1.0"" encoding=""utf-8""?>" + "\r\n" + XML_WITHOUT_DECLARATION;
 
-        private MicrosoftXmlSerializer _serializer;
+        private readonly MicrosoftXmlSerializer _serializer;
 
         public MicrosoftXmlSerializerShould()
         {
@@ -27,8 +27,7 @@ namespace Flurl.Http.Xml.Tests
         public void Serialize()
         {
             var model = new TestModel { Number = 3, Text = "Test" };
-            string s = _serializer.Serialize(model);
-            model = _serializer.Deserialize<TestModel>(s);
+            model = _serializer.Deserialize<TestModel>(_serializer.Serialize(model));
 
             Assert.Equal(3, model.Number);
             Assert.Equal("Test", model.Text);

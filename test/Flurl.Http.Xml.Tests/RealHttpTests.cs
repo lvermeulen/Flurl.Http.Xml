@@ -33,7 +33,8 @@ namespace Flurl.Http.Xml.Tests
         [Fact]
         public async Task PostXmlToModel()
         {
-            var result = await "http://putsreq.com/JMG62khbf6IWRR8Bz9nU"
+            // outsreq set up with response builder: response.body = request.body
+            var result = await "http://putsreq.com/icFb09Wa6dAtW0DHSEm1"
                 .PostXmlAsync(new TestModel { Number = 3, Text = "Test" })
                 .ReceiveXml<TestModel>();
 
@@ -44,7 +45,8 @@ namespace Flurl.Http.Xml.Tests
         [Fact]
         public async Task PostXmlToXDocument()
         {
-            var result = await "http://putsreq.com/JMG62khbf6IWRR8Bz9nU"
+            // outsreq set up with response builder: response.body = request.body
+            var result = await "http://putsreq.com/icFb09Wa6dAtW0DHSEm1"
                 .PostXmlAsync(new TestModel {Number = 3, Text = "Test"})
                 .ReceiveXDocument();
 
