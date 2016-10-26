@@ -12,7 +12,6 @@
 
   "frameworks": {
     "netcoreapp1.0": {
-      "imports": ["dotnet54"],
       "dependencies": {
         "Microsoft.NETCore.App": {
           "type": "platform",
