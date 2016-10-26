@@ -1,1 +1,1 @@
-Invoke-Expression ".\build\installDotnet.ps1"
+#Invoke-Expression ".\build\installDotnet.ps1"
