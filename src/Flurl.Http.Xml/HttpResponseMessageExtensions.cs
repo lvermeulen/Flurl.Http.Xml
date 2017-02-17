@@ -71,7 +71,7 @@ namespace Flurl.Http.Xml
 		/// <example>d = await url.PostAsync(data).ReceiveXElementsFromXPath(xpathExpression)</example>
 		public static async Task<IEnumerable<XElement>> ReceiveXElementsFromXPath(this Task<HttpResponseMessage> response, string expression)
 		{
-			var doc = await response.ReceiveXDocument();
+			var doc = await response.ReceiveXDocument().ConfigureAwait(false);
 			return doc.XPathSelectElements(expression);
 		}
 
@@ -82,7 +82,7 @@ namespace Flurl.Http.Xml
 		/// <example>d = await url.PostAsync(data).ReceiveXElementsFromXPath(xpathExpression, namespaceResolver)</example>
 		public static async Task<IEnumerable<XElement>> ReceiveXElementsFromXPath(this Task<HttpResponseMessage> response, string expression, IXmlNamespaceResolver resolver)
 		{
-			var doc = await response.ReceiveXDocument();
+			var doc = await response.ReceiveXDocument().ConfigureAwait(false);
 			return doc.XPathSelectElements(expression, resolver);
 		}
 	}
