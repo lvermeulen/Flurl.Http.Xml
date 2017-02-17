@@ -10,8 +10,8 @@ namespace Flurl.Http.Xml
 	/// </summary>
 	public static class FlurlHttpSettingsExtensions
 	{
-		private static XmlWriterSettings _sXmlWriterSettings = new XmlWriterSettings { Encoding = new UTF8Encoding(false, false), Indent = true, OmitXmlDeclaration = false };
-		private static readonly Lazy<MicrosoftXmlSerializer> SXmlSerializerInstance = new Lazy<MicrosoftXmlSerializer>(() => new MicrosoftXmlSerializer(_sXmlWriterSettings));
+		private static XmlWriterSettings s_xmlWriterSettings = new XmlWriterSettings { Encoding = new UTF8Encoding(false, false), Indent = true, OmitXmlDeclaration = false };
+		private static readonly Lazy<MicrosoftXmlSerializer> s_xmlSerializerInstance = new Lazy<MicrosoftXmlSerializer>(() => new MicrosoftXmlSerializer(s_xmlWriterSettings));
 
 		/// <summary>
 		/// XMLs the serializer.
@@ -19,7 +19,7 @@ namespace Flurl.Http.Xml
 		/// <param name="settings">The settings.</param>
 		public static MicrosoftXmlSerializer XmlSerializer(this FlurlHttpSettings settings)
 		{
-			return XmlSerializer(settings, _sXmlWriterSettings);
+			return XmlSerializer(settings, s_xmlWriterSettings);
 		}
 
 		/// <summary>
@@ -29,8 +29,8 @@ namespace Flurl.Http.Xml
 		/// <param name="xmlWriterSettings">The XML writer settings.</param>
 		public static MicrosoftXmlSerializer XmlSerializer(this FlurlHttpSettings settings, XmlWriterSettings xmlWriterSettings)
 		{
-			_sXmlWriterSettings = xmlWriterSettings;
-			return SXmlSerializerInstance.Value;
+			s_xmlWriterSettings = xmlWriterSettings;
+			return s_xmlSerializerInstance.Value;
 		}
 	}
 }

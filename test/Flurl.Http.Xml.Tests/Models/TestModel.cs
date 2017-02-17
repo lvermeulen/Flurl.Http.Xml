@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Flurl.Http.Xml.Tests.Models
+﻿namespace Flurl.Http.Xml.Tests.Models
 {
     public class TestModel
     {
