@@ -1,15 +1,18 @@
 ﻿using System.Threading.Tasks;
 using System.Xml.Linq;
+using Flurl.Http.Configuration;
 using Flurl.Http.Xml.Tests.Models;
 using Xunit;
 
 namespace Flurl.Http.Xml.Tests
 {
-    public class RealHttpTests
+    public class HttpTests
     {
         [Fact]
         public async Task GetXDocument()
         {
+            FlurlHttp.Configure(c => c.HttpClientFactory = new DefaultHttpClientFactory());
+
             var result = await "https://query.yahooapis.com/v1/public/yql"
                 .SetQueryParam("q", "select wind from weather.forecast where woeid=2460286")
                 .SetQueryParam("format", "xml")
@@ -30,8 +33,9 @@ namespace Flurl.Http.Xml.Tests
         [Fact]
         public async Task PostXmlToModel()
         {
-            // outsreq set up with response builder: response.body = request.body
-            var result = await "http://putsreq.com/icFb09Wa6dAtW0DHSEm1"
+            FlurlHttp.Configure(c => c.HttpClientFactory = new TestHttpClientFactory());
+
+            var result = await "http://some.url"
                 .PostXmlAsync(new TestModel { Number = 3, Text = "Test" })
                 .ReceiveXml<TestModel>();
 
@@ -42,9 +46,10 @@ namespace Flurl.Http.Xml.Tests
         [Fact]
         public async Task PostXmlToXDocument()
         {
-            // outsreq set up with response builder: response.body = request.body
-            var result = await "http://putsreq.com/icFb09Wa6dAtW0DHSEm1"
-                .PostXmlAsync(new TestModel {Number = 3, Text = "Test"})
+            FlurlHttp.Configure(c => c.HttpClientFactory = new TestHttpClientFactory());
+
+            var result = await "http://some.url"
+                .PostXmlAsync(new TestModel { Number = 3, Text = "Test" })
                 .ReceiveXDocument();
 
             Assert.Equal("3", result?.Element("TestModel")?.Element("Number")?.Value);
