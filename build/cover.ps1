@@ -64,4 +64,7 @@ Write-Output "Sending code coverage results to coveralls.io"
 7z a codecoverage.zip $tempCoverageFileName
 Push-AppveyorArtifact codecoverage.zip
 
+pip install codecov
+codecov -f $tempCoverageFileName
+
 
