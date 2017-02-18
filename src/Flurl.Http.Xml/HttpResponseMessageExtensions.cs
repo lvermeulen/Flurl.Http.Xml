@@ -14,6 +14,16 @@ namespace Flurl.Http.Xml
 	/// </summary>
 	public static class HttpResponseMessageExtensions
 	{
+	    private static HttpCall GetHttpCall(HttpRequestMessage request)
+	    {
+            object obj;
+            if (request?.Properties != null && request.Properties.TryGetValue("FlurlHttpCall", out obj) && obj is HttpCall)
+            {
+                return (HttpCall)obj;
+            }
+	        return null;
+        }
+
 		/// <summary>
 		/// Deserializes XML-formatted HTTP response body to object of type T. Intended to chain off an async HTTP.
 		/// </summary>
@@ -23,7 +33,7 @@ namespace Flurl.Http.Xml
 		public static async Task<T> ReceiveXml<T>(this Task<HttpResponseMessage> response)
 		{
 			var resp = await response.ConfigureAwait(false);
-			var call = HttpCall.Get(resp.RequestMessage);
+			var call = GetHttpCall(resp.RequestMessage);
 			try
 			{
 				using (var stream = await resp.Content.ReadAsStreamAsync().ConfigureAwait(false))
@@ -47,7 +57,7 @@ namespace Flurl.Http.Xml
 		public static async Task<XDocument> ReceiveXDocument(this Task<HttpResponseMessage> response)
 		{
 			var resp = await response.ConfigureAwait(false);
-			var call = HttpCall.Get(resp.RequestMessage);
+			var call = GetHttpCall(resp.RequestMessage);
 			try
 			{
 				using (var stream = await resp.Content.ReadAsStreamAsync().ConfigureAwait(false))
