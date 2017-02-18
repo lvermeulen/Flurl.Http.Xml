@@ -1,5 +1,4 @@
-﻿using System.IO;
-using System.Text;
+﻿using System.Text;
 using System.Xml.Linq;
 
 namespace Flurl.Http.Xml
@@ -16,7 +15,7 @@ namespace Flurl.Http.Xml
 		public static string ToStringWithDeclaration(this XDocument doc)
 		{
 			var sb = new StringBuilder();
-			using (TextWriter writer = new Utf8StringWriter(sb))
+			using (var writer = new Utf8StringWriter(sb))
 			{
 				doc.Save(writer);
 			}

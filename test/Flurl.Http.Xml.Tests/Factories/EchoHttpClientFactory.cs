@@ -8,9 +8,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Internal;
 using Microsoft.AspNetCore.TestHost;
 
-namespace Flurl.Http.Xml.Tests
+namespace Flurl.Http.Xml.Tests.Factories
 {
-    public class TestHttpClientFactory : DefaultHttpClientFactory
+    public class EchoHttpClientFactory : DefaultHttpClientFactory
     {
         private string HttpRequestBodyToString(HttpRequest httpRequest)
         {
