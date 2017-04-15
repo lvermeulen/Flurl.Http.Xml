@@ -9,10 +9,11 @@ namespace Flurl.Http.Xml
 	/// </summary>
 	public class CapturedXmlContent : CapturedStringContent
 	{
-		/// <summary>
-		/// Initializes a new instance of the <see cref="CapturedXmlContent"/> class.
-		/// </summary>
-		/// <param name="xml">The XML.</param>
-		public CapturedXmlContent(string xml) : base(xml, Encoding.UTF8, "application/xml") { }
+	    /// <summary>
+	    /// Initializes a new instance of the <see cref="CapturedXmlContent"/> class.
+	    /// </summary>
+	    /// <param name="xml">The XML.</param>
+	    /// <param name="mediaType">The media-type.</param>
+	    public CapturedXmlContent(string xml, string mediaType) : base(xml, Encoding.UTF8, mediaType) { }
 	}
 }

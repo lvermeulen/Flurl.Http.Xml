@@ -166,5 +166,21 @@ namespace Flurl.Http.Xml.Tests
 
             AssertXDocument(result, 3, "Test");
         }
+
+        [Theory]
+        [InlineData("text/xml", "text/xml")]
+        [InlineData("text/something+xml", "text/something+xml")]
+        [InlineData(null, "application/xml")]
+        public async Task ReceiveCorrectMediaType(string acceptMediaType, string expectedContentType)
+        {
+            FlurlHttp.Configure(c => c.HttpClientFactory = new EchoHttpClientFactory());
+
+            var result = await new Url("https://some.url")
+                .WithHeader("Accept", acceptMediaType)
+                .PostXmlAsync(new TestModel { Number = 3, Text = "Test" })
+                .ReceiveXmlResponseMessage();
+
+            Assert.Equal(expectedContentType, result?.Content?.Headers?.ContentType?.MediaType);
+        }
     }
 }

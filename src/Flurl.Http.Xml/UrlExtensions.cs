@@ -12,39 +12,41 @@ namespace Flurl.Http.Xml
 	/// </summary>
 	public static class UrlExtensions
 	{
-		/// <summary>
-		/// Sends an asynchronous GET request.
-		/// </summary>
-		/// <typeparam name="T"></typeparam>
-		/// <param name="url">The URL.</param>
-		/// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-		/// <returns>
-		/// A Task whose result is the XML response body deserialized to an object of type T.
-		/// </returns>
-		public static Task<T> GetXmlAsync<T>(this Url url, CancellationToken cancellationToken) 
+        /// <summary>
+        /// Sends an asynchronous GET request.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="url">The URL.</param>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <returns>
+        /// A Task whose result is the XML response body deserialized to an object of type T.
+        /// </returns>
+        public static Task<T> GetXmlAsync<T>(this Url url, CancellationToken cancellationToken) 
 			=> new FlurlClient(url, true).GetXmlAsync<T>(cancellationToken);
 
-		/// <summary>
-		/// Sends an asynchronous GET request.
-		/// </summary>
-		/// <returns>A Task whose result is the XML response body deserialized to an object of type T.</returns>
-		public static Task<T> GetXmlAsync<T>(this Url url) 
+        /// <summary>
+        /// Sends an asynchronous GET request.
+        /// </summary>
+        /// <param name="url">The URL.</param>
+        /// <returns>A Task whose result is the XML response body deserialized to an object of type T.</returns>
+        public static Task<T> GetXmlAsync<T>(this Url url) 
 			=> new FlurlClient(url, true).GetXmlAsync<T>();
 
-		/// <summary>
-		/// Sends an asynchronous GET request.
-		/// </summary>
-		/// <param name="url">The URL.</param>
-		/// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-		/// <returns>A Task whose result is the XML response body parsed into an XDocument.</returns>
-		public static Task<XDocument> GetXDocumentAsync(this Url url, CancellationToken cancellationToken) 
+        /// <summary>
+        /// Sends an asynchronous GET request.
+        /// </summary>
+        /// <param name="url">The URL.</param>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <returns>A Task whose result is the XML response body parsed into an XDocument.</returns>
+        public static Task<XDocument> GetXDocumentAsync(this Url url, CancellationToken cancellationToken) 
 			=> new FlurlClient(url, true).GetXDocumentAsync(cancellationToken);
 
-		/// <summary>
-		/// Sends an asynchronous GET request.
-		/// </summary>
-		/// <returns>A Task whose result is the XML response body parsed into an XDocument.</returns>
-		public static Task<XDocument> GetXDocumentAsync(this Url url) => new FlurlClient(url, true).GetXDocumentAsync();
+        /// <summary>
+        /// Sends an asynchronous GET request.
+        /// </summary>
+        /// <param name="url">The URL.</param>
+        /// <returns>A Task whose result is the XML response body parsed into an XDocument.</returns>
+        public static Task<XDocument> GetXDocumentAsync(this Url url) => new FlurlClient(url, true).GetXDocumentAsync();
 
 		/// <summary>
 		/// Sends an asynchronous GET request.

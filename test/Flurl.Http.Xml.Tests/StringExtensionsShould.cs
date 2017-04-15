@@ -3,7 +3,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
-using Flurl.Http.Configuration;
 using Flurl.Http.Xml.Tests.Factories;
 using Flurl.Http.Xml.Tests.Models;
 using Xunit;
