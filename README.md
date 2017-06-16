@@ -37,10 +37,10 @@ XML extension to the excellent [Flurl](https://github.com/tmenier/Flurl) library
     Assert.AreEqual("Test", result.Text);
 ~~~~
 
-* Post a model and receive an XDocument:
+* Put a model and receive an XDocument:
 ~~~~
     var result = await "http://my_xml_endpoint"
-        .PostXmlAsync(new TestModel {Number = 3, Text = "Test"})
+        .PutXmlAsync(new TestModel {Number = 3, Text = "Test"})
         .ReceiveXDocument();
 
     Assert.AreEqual("3", result?.Element("TestModel")?.Element("Number")?.Value);

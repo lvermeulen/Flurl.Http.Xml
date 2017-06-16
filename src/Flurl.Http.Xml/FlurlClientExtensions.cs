@@ -124,6 +124,37 @@ namespace Flurl.Http.Xml
 	        return "application/xml";
         }
 
+	    /// <summary>
+	    /// Sends an asynchronous HTTP request.
+	    /// </summary>
+	    /// <param name="client">The client.</param>
+	    /// <param name="httpMethod">HTTP method of the request</param>
+	    /// <param name="data">Contents of the request body.</param>
+	    /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+	    /// <returns>
+	    /// A Task whose result is the received HttpResponseMessage.
+	    /// </returns>
+	    public static Task<HttpResponseMessage> SendXmlAsync(this IFlurlClient client, HttpMethod httpMethod, object data, CancellationToken cancellationToken)
+	    {
+	        var content = new CapturedXmlContent(client.Settings.XmlSerializer().Serialize(data), client.GetMediaType());
+	        return client.SendAsync(httpMethod, content: content, cancellationToken: cancellationToken);
+	    }
+
+        /// <summary>
+        /// Sends an asynchronous HTTP request.
+        /// </summary>
+        /// <param name="client">The client.</param>
+        /// <param name="httpMethod">HTTP method of the request</param>
+	    /// <param name="data">Contents of the request body.</param>
+        /// <returns>
+        /// A Task whose result is the received HttpResponseMessage.
+        /// </returns>
+        public static Task<HttpResponseMessage> SendXmlAsync(this IFlurlClient client, HttpMethod httpMethod, object data)
+	    {
+	        var content = new CapturedXmlContent(client.Settings.XmlSerializer().Serialize(data), client.GetMediaType());
+	        return client.SendAsync(httpMethod, content: content);
+	    }
+
         /// <summary>
         /// Sends an asynchronous POST request.
         /// </summary>
@@ -133,13 +164,10 @@ namespace Flurl.Http.Xml
         /// <returns>
         /// A Task whose result is the received HttpResponseMessage.
         /// </returns>
-        public static Task<HttpResponseMessage> PostXmlAsync(this IFlurlClient client, object data, CancellationToken cancellationToken)
-		{
-			var content = new CapturedXmlContent(client.Settings.XmlSerializer().Serialize(data), client.GetMediaType());
-			return client.SendAsync(HttpMethod.Post, content: content, cancellationToken: cancellationToken);
-		}
+        public static Task<HttpResponseMessage> PostXmlAsync(this IFlurlClient client, object data, CancellationToken cancellationToken) => 
+            SendXmlAsync(client, HttpMethod.Post, data, cancellationToken);
 
-		/// <summary>
+	    /// <summary>
 		/// Sends an asynchronous POST request.
 		/// </summary>
 		/// <param name="client">The client.</param>
@@ -147,10 +175,30 @@ namespace Flurl.Http.Xml
 		/// <returns>
 		/// A Task whose result is the received HttpResponseMessage.
 		/// </returns>
-		public static Task<HttpResponseMessage> PostXmlAsync(this IFlurlClient client, object data)
-		{
-			var content = new CapturedXmlContent(client.Settings.XmlSerializer().Serialize(data), client.GetMediaType());
-			return client.SendAsync(HttpMethod.Post, content: content);
-		}
+		public static Task<HttpResponseMessage> PostXmlAsync(this IFlurlClient client, object data) =>
+	        SendXmlAsync(client, HttpMethod.Post, data);
+
+        /// <summary>
+        /// Sends an asynchronous PUT request.
+        /// </summary>
+        /// <param name="client">The client.</param>
+        /// <param name="data">Contents of the request body.</param>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <returns>
+        /// A Task whose result is the received HttpResponseMessage.
+        /// </returns>
+        public static Task<HttpResponseMessage> PutXmlAsync(this IFlurlClient client, object data, CancellationToken cancellationToken) =>
+            SendXmlAsync(client, HttpMethod.Put, data, cancellationToken);
+
+        /// <summary>
+        /// Sends an asynchronous PUT request.
+        /// </summary>
+        /// <param name="client">The client.</param>
+        /// <param name="data">Contents of the request body.</param>
+        /// <returns>
+        /// A Task whose result is the received HttpResponseMessage.
+        /// </returns>
+        public static Task<HttpResponseMessage> PutXmlAsync(this IFlurlClient client, object data) =>
+	        SendXmlAsync(client, HttpMethod.Put, data);
 	}
 }

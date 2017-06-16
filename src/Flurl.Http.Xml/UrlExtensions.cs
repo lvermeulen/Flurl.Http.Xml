@@ -86,23 +86,63 @@ namespace Flurl.Http.Xml
 			IXmlNamespaceResolver resolver) 
 			=> new FlurlClient(url, true).GetXElementsFromXPath(expression, resolver);
 
-		/// <summary>
-		/// Creates a FlurlClient from the URL and sends an asynchronous POST request.
-		/// </summary>
-		/// <param name="url">The URL.</param>
-		/// <param name="data">Contents of the request body.</param>
-		/// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-		/// <returns>A Task whose result is the received HttpResponseMessage.</returns>
-		public static Task<HttpResponseMessage> PostXmlAsync(this Url url, object data, CancellationToken cancellationToken)
-			=> new FlurlClient(url, true).PostXmlAsync(data, cancellationToken);
+	    /// <summary>
+	    /// Creates a FlurlClient from the URL and sends an asynchronous HTTP request.
+	    /// </summary>
+	    /// <param name="url">The URL.</param>
+	    /// <param name="method">HTTP method of the request</param>
+	    /// <param name="data">Contents of the request body.</param>
+	    /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+	    /// <returns>A Task whose result is the received HttpResponseMessage.</returns>
+	    public static Task<HttpResponseMessage> SendXmlAsync(this Url url, HttpMethod method, object data, CancellationToken cancellationToken)
+			=> new FlurlClient(url, true).SendXmlAsync(method, data, cancellationToken);
 
-		/// <summary>
-		/// Creates a FlurlClient from the URL and sends an asynchronous POST request.
-		/// </summary>
-		/// <param name="url">The URL.</param>
+        /// <summary>
+        /// Creates a FlurlClient from the URL and sends an asynchronous HTTP request.
+        /// </summary>
+        /// <param name="url">The URL.</param>
+        /// <param name="method">HTTP method of the request</param>
 		/// <param name="data">Contents of the request body.</param>
-		/// <returns>A Task whose result is the received HttpResponseMessage.</returns>
-		public static Task<HttpResponseMessage> PostXmlAsync(this Url url, object data) 
-			=> new FlurlClient(url, true).PostXmlAsync(data);
+        /// <returns>A Task whose result is the received HttpResponseMessage.</returns>
+        public static Task<HttpResponseMessage> SendXmlAsync(this Url url, HttpMethod method, object data) 
+			=> new FlurlClient(url, true).SendXmlAsync(method, data);
+
+	    /// <summary>
+	    /// Creates a FlurlClient from the URL and sends an asynchronous POST request.
+	    /// </summary>
+	    /// <param name="url">The URL.</param>
+	    /// <param name="data">Contents of the request body.</param>
+	    /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+	    /// <returns>A Task whose result is the received HttpResponseMessage.</returns>
+	    public static Task<HttpResponseMessage> PostXmlAsync(this Url url, object data, CancellationToken cancellationToken)
+	        => new FlurlClient(url, true).PostXmlAsync(data, cancellationToken);
+
+	    /// <summary>
+	    /// Creates a FlurlClient from the URL and sends an asynchronous POST request.
+	    /// </summary>
+	    /// <param name="url">The URL.</param>
+	    /// <param name="data">Contents of the request body.</param>
+	    /// <returns>A Task whose result is the received HttpResponseMessage.</returns>
+	    public static Task<HttpResponseMessage> PostXmlAsync(this Url url, object data)
+	        => new FlurlClient(url, true).PostXmlAsync(data);
+
+	    /// <summary>
+	    /// Creates a FlurlClient from the URL and sends an asynchronous PUT request.
+	    /// </summary>
+	    /// <param name="url">The URL.</param>
+	    /// <param name="data">Contents of the request body.</param>
+	    /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+	    /// <returns>A Task whose result is the received HttpResponseMessage.</returns>
+	    public static Task<HttpResponseMessage> PutXmlAsync(this Url url, object data, CancellationToken cancellationToken)
+	        => new FlurlClient(url, true).PutXmlAsync(data, cancellationToken);
+
+	    /// <summary>
+	    /// Creates a FlurlClient from the URL and sends an asynchronous PUT request.
+	    /// </summary>
+	    /// <param name="url">The URL.</param>
+	    /// <param name="data">Contents of the request body.</param>
+	    /// <returns>A Task whose result is the received HttpResponseMessage.</returns>
+	    public static Task<HttpResponseMessage> PutXmlAsync(this Url url, object data)
+	        => new FlurlClient(url, true).PutXmlAsync(data);
 	}
 }
