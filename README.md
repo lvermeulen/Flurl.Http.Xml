@@ -4,12 +4,12 @@
 
 XML extension to the excellent [Flurl](https://github.com/tmenier/Flurl) library
 
-##Features:
+## Features:
 * Get, post and receive XML models
 * Receive XDocument
 * Receive XElements with XPath
 
-##Usage:
+## Usage:
 
 * Get an XDocument:
 ~~~~
@@ -47,5 +47,5 @@ XML extension to the excellent [Flurl](https://github.com/tmenier/Flurl) library
     Assert.AreEqual("Test", result?.Element("TestModel")?.Element("Text")?.Value);
 ~~~~
 
-##Thanks
+## Thanks
 * [XML File](https://thenounproject.com/term/xml-file/320630/) icon by [Oliviu Stoian](https://thenounproject.com/smashicons/) from [The Noun Project](https://thenounproject.com)
