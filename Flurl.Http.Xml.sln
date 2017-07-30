@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F2114366-0322-434F-91D3-A25939F0CFA7}"
 	ProjectSection(SolutionItems) = preProject
@@ -9,13 +9,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitignore = .gitignore
 		appveyor.yml = appveyor.yml
 		codecov.yml = codecov.yml
-		global.json = global.json
 		README.md = README.md
 	EndProjectSection
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Flurl.Http.Xml.Tests", "test\Flurl.Http.Xml.Tests\Flurl.Http.Xml.Tests.xproj", "{7BA9BC27-1501-47EA-90FF-BCDBD25CA8B8}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Flurl.Http.Xml", "src\Flurl.Http.Xml\Flurl.Http.Xml.xproj", "{B9826CF6-17DD-4D2D-A6BD-F15CFA18F9CB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{46CBA58D-18BA-4E79-A5E4-AD4738A5543C}"
 	ProjectSection(SolutionItems) = preProject
@@ -27,6 +22,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{46CBA58D
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{5B74B194-432C-4581-B683-22FB89C46AD3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Flurl.Http.Xml.Tests", "test\Flurl.Http.Xml.Tests\Flurl.Http.Xml.Tests.csproj", "{7BA9BC27-1501-47EA-90FF-BCDBD25CA8B8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Flurl.Http.Xml", "src\Flurl.Http.Xml\Flurl.Http.Xml.csproj", "{B9826CF6-17DD-4D2D-A6BD-F15CFA18F9CB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
