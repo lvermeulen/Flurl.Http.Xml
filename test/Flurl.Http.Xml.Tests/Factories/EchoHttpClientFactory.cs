@@ -43,6 +43,6 @@ namespace Flurl.Http.Xml.Tests.Factories
             return server.CreateClient();
         }
 
-        public override HttpClient CreateClient(Url url, HttpMessageHandler handler) => GetClient();
+        public override HttpClient CreateHttpClient(HttpMessageHandler handler) => GetClient();
     }
 }

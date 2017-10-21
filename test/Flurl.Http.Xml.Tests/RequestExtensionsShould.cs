@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Xml;
@@ -9,11 +10,11 @@ using Xunit;
 
 namespace Flurl.Http.Xml.Tests
 {
-    public class UrlExtensionsShould : TestBase
+    public class RequestExtensionsShould : TestBase
     {
         private readonly CancellationToken _ct;
 
-        public UrlExtensionsShould()
+        public RequestExtensionsShould()
         {
             var cts = new CancellationTokenSource();
             _ct = cts.Token;
@@ -37,6 +38,7 @@ namespace Flurl.Http.Xml.Tests
             FlurlHttp.Configure(c => c.HttpClientFactory = new TestModelHttpClientFactory());
 
             var result = await new Url("https://some.url")
+                .AllowAnyHttpStatus()
                 .GetXmlAsync<TestModel>();
 
             AssertTestModel(result, 3, "Test");
@@ -48,6 +50,7 @@ namespace Flurl.Http.Xml.Tests
             FlurlHttp.Configure(c => c.HttpClientFactory = new TestModelHttpClientFactory());
 
             var result = await new Url("https://some.url")
+                .AllowAnyHttpStatus()
                 .GetXmlAsync<TestModel>(_ct);
 
             AssertTestModel(result, 3, "Test");
@@ -59,6 +62,7 @@ namespace Flurl.Http.Xml.Tests
             FlurlHttp.Configure(c => c.HttpClientFactory = new TestModelHttpClientFactory());
 
             var result = await new Url("https://some.url")
+                .AllowAnyHttpStatus()
                 .GetXDocumentAsync();
 
             AssertXDocument(result, 3, "Test");
@@ -70,6 +74,7 @@ namespace Flurl.Http.Xml.Tests
             FlurlHttp.Configure(c => c.HttpClientFactory = new TestModelHttpClientFactory());
 
             var result = await new Url("https://some.url")
+                .AllowAnyHttpStatus()
                 .GetXDocumentAsync(_ct);
 
             AssertXDocument(result, 3, "Test");
@@ -81,6 +86,7 @@ namespace Flurl.Http.Xml.Tests
             FlurlHttp.Configure(c => c.HttpClientFactory = new TestModelHttpClientFactory());
 
             var result = await new Url("https://some.url")
+                .AllowAnyHttpStatus()
                 .GetXElementsFromXPath("/TestModel");
 
             AssertXDocument(result.FirstOrDefault()?.Document, 3, "Test");
@@ -92,6 +98,7 @@ namespace Flurl.Http.Xml.Tests
             FlurlHttp.Configure(c => c.HttpClientFactory = new TestModelHttpClientFactory());
 
             var result = await new Url("https://some.url")
+                .AllowAnyHttpStatus()
                 .GetXElementsFromXPath("/TestModel", new XmlNamespaceManager(new NameTable()));
 
             AssertXDocument(result.FirstOrDefault()?.Document, 3, "Test");
@@ -103,6 +110,7 @@ namespace Flurl.Http.Xml.Tests
             FlurlHttp.Configure(c => c.HttpClientFactory = new TestModelHttpClientFactory());
 
             var result = await new Url("https://some.url")
+                .AllowAnyHttpStatus()
                 .GetXElementsFromXPath("/TestModel", _ct);
 
             AssertXDocument(result.FirstOrDefault()?.Document, 3, "Test");
@@ -114,6 +122,7 @@ namespace Flurl.Http.Xml.Tests
             FlurlHttp.Configure(c => c.HttpClientFactory = new TestModelHttpClientFactory());
 
             var result = await new Url("https://some.url")
+                .AllowAnyHttpStatus()
                 .GetXElementsFromXPath("/TestModel", new XmlNamespaceManager(new NameTable()), _ct);
 
             AssertXDocument(result.FirstOrDefault()?.Document, 3, "Test");
@@ -128,6 +137,7 @@ namespace Flurl.Http.Xml.Tests
 
             var method = HttpMethodByType[methodType];
             var result = await new Url("https://some.url")
+                .AllowAnyHttpStatus()
                 .SendXmlAsync(method, new TestModel { Number = 3, Text = "Test" })
                 .ReceiveXml<TestModel>();
 
@@ -143,6 +153,7 @@ namespace Flurl.Http.Xml.Tests
 
             var method = HttpMethodByType[methodType];
             var result = await new Url("https://some.url")
+                .AllowAnyHttpStatus()
                 .SendXmlAsync(method, new TestModel { Number = 3, Text = "Test" }, _ct)
                 .ReceiveXml<TestModel>();
 
@@ -158,6 +169,7 @@ namespace Flurl.Http.Xml.Tests
 
             var method = HttpMethodByType[methodType];
             var result = await new Url("https://some.url")
+                .AllowAnyHttpStatus()
                 .SendXmlAsync(method, new TestModel { Number = 3, Text = "Test" })
                 .ReceiveXDocument();
 
@@ -173,6 +185,7 @@ namespace Flurl.Http.Xml.Tests
 
             var method = HttpMethodByType[methodType];
             var result = await new Url("https://some.url")
+                .AllowAnyHttpStatus()
                 .SendXmlAsync(method, new TestModel { Number = 3, Text = "Test" }, _ct)
                 .ReceiveXDocument();
 
@@ -185,6 +198,7 @@ namespace Flurl.Http.Xml.Tests
             FlurlHttp.Configure(c => c.HttpClientFactory = new EchoHttpClientFactory());
 
             var result = await new Url("https://some.url")
+                .AllowAnyHttpStatus()
                 .PostXmlAsync(new TestModel { Number = 3, Text = "Test" })
                 .ReceiveXml<TestModel>();
 
@@ -197,6 +211,7 @@ namespace Flurl.Http.Xml.Tests
             FlurlHttp.Configure(c => c.HttpClientFactory = new EchoHttpClientFactory());
 
             var result = await new Url("https://some.url")
+                .AllowAnyHttpStatus()
                 .PostXmlAsync(new TestModel { Number = 3, Text = "Test" }, _ct)
                 .ReceiveXml<TestModel>();
 
@@ -209,6 +224,7 @@ namespace Flurl.Http.Xml.Tests
             FlurlHttp.Configure(c => c.HttpClientFactory = new EchoHttpClientFactory());
 
             var result = await new Url("https://some.url")
+                .AllowAnyHttpStatus()
                 .PostXmlAsync(new TestModel { Number = 3, Text = "Test" })
                 .ReceiveXDocument();
 
@@ -221,6 +237,7 @@ namespace Flurl.Http.Xml.Tests
             FlurlHttp.Configure(c => c.HttpClientFactory = new EchoHttpClientFactory());
 
             var result = await new Url("https://some.url")
+                .AllowAnyHttpStatus()
                 .PostXmlAsync(new TestModel { Number = 3, Text = "Test" }, _ct)
                 .ReceiveXDocument();
 
@@ -233,6 +250,7 @@ namespace Flurl.Http.Xml.Tests
             FlurlHttp.Configure(c => c.HttpClientFactory = new EchoHttpClientFactory());
 
             var result = await new Url("https://some.url")
+                .AllowAnyHttpStatus()
                 .PutXmlAsync(new TestModel { Number = 3, Text = "Test" })
                 .ReceiveXml<TestModel>();
 
@@ -245,6 +263,7 @@ namespace Flurl.Http.Xml.Tests
             FlurlHttp.Configure(c => c.HttpClientFactory = new EchoHttpClientFactory());
 
             var result = await new Url("https://some.url")
+                .AllowAnyHttpStatus()
                 .PutXmlAsync(new TestModel { Number = 3, Text = "Test" }, _ct)
                 .ReceiveXml<TestModel>();
 
@@ -257,6 +276,7 @@ namespace Flurl.Http.Xml.Tests
             FlurlHttp.Configure(c => c.HttpClientFactory = new EchoHttpClientFactory());
 
             var result = await new Url("https://some.url")
+                .AllowAnyHttpStatus()
                 .PutXmlAsync(new TestModel { Number = 3, Text = "Test" })
                 .ReceiveXDocument();
 
@@ -269,10 +289,28 @@ namespace Flurl.Http.Xml.Tests
             FlurlHttp.Configure(c => c.HttpClientFactory = new EchoHttpClientFactory());
 
             var result = await new Url("https://some.url")
+                .AllowAnyHttpStatus()
                 .PutXmlAsync(new TestModel { Number = 3, Text = "Test" }, _ct)
                 .ReceiveXDocument();
 
             AssertXDocument(result, 3, "Test");
+        }
+
+        [Theory]
+        [InlineData("Accept", "text/xml, application/xml", "text/xml")]
+        [InlineData("Accept", "text/something+xml", "text/something+xml")]
+        [InlineData("Accept", null, "application/xml")]
+        [InlineData("", null, "application/xml")]
+        public async Task ReceiveCorrectMediaType(string headerName, string acceptMediaType, string expectedContentType)
+        {
+            FlurlHttp.Configure(c => c.HttpClientFactory = new EchoHttpClientFactory());
+
+            var result = await new Url("https://some.url")
+                .WithHeader(headerName, acceptMediaType)
+                .SendXmlAsync(HttpMethod.Post, new TestModel { Number = 3, Text = "Test" })
+                .ReceiveXmlResponseMessage();
+
+            Assert.Equal(expectedContentType, result?.Content?.Headers?.ContentType?.MediaType);
         }
     }
 }

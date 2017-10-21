@@ -18,8 +18,7 @@ namespace Flurl.Http.Xml
 	{
 	    private static HttpCall GetHttpCall(HttpRequestMessage request)
 	    {
-            object obj;
-            if (request?.Properties != null && request.Properties.TryGetValue("FlurlHttpCall", out obj) && obj is HttpCall)
+	        if (request?.Properties != null && request.Properties.TryGetValue("FlurlHttpCall", out var obj) && obj is HttpCall)
             {
                 return (HttpCall)obj;
             }
@@ -32,7 +31,7 @@ namespace Flurl.Http.Xml
 	        {
 	            // return media type of first accepted media type containing "xml", else of first accepted media type
 	            var acceptHeader = request.Headers.Accept.First(x => x.MediaType.IndexOf("xml", StringComparison.OrdinalIgnoreCase) >= 0)
-	                         ?? request.Headers.Accept.First();
+                    ?? request.Headers.Accept.First();
 
 	            return acceptHeader.MediaType;
 	        }
@@ -70,7 +69,6 @@ namespace Flurl.Http.Xml
 	        catch (Exception ex)
 	        {
 	            var s = await resp.Content.ReadAsStringAsync().ConfigureAwait(false);
-	            call.Exception = ex;
 	            throw new FlurlHttpException(call, s, ex);
 	        }
 	    }
@@ -85,7 +83,7 @@ namespace Flurl.Http.Xml
         public static async Task<T> ReceiveXml<T>(this Task<HttpResponseMessage> response)
 	    {
 	        return await ReceiveFromXmlStream(response, (call, stm) => 
-                call.Settings.XmlSerializer().Deserialize<T>(stm));
+                call.FlurlRequest.Settings.XmlSerializer().Deserialize<T>(stm));
 	    }
 
         /// <summary>
