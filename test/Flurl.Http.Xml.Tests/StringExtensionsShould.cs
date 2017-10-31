@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
@@ -11,14 +10,6 @@ namespace Flurl.Http.Xml.Tests
 {
     public class StringExtensionsShould : TestBase
     {
-        private readonly CancellationToken _ct;
-
-        public StringExtensionsShould()
-        {
-            var cts = new CancellationTokenSource();
-            _ct = cts.Token;
-        }
-
         private void AssertTestModel(TestModel testModel, int expectedNumber, string expectedText)
         {
             Assert.Equal(expectedNumber, testModel.Number);
@@ -43,34 +34,12 @@ namespace Flurl.Http.Xml.Tests
         }
 
         [Fact]
-        public async Task GetXmlWithCancellationTokenAsync()
-        {
-            FlurlHttp.Configure(c => c.HttpClientFactory = new TestModelHttpClientFactory());
-
-            var result = await "https://some.url"
-                .GetXmlAsync<TestModel>(_ct);
-
-            AssertTestModel(result, 3, "Test");
-        }
-
-        [Fact]
         public async Task GetXDocumentAsync()
         {
             FlurlHttp.Configure(c => c.HttpClientFactory = new TestModelHttpClientFactory());
 
             var result = await "https://some.url"
                 .GetXDocumentAsync();
-
-            AssertXDocument(result, 3, "Test");
-        }
-
-        [Fact]
-        public async Task GetXDocumentWithCancellationTokenAsync()
-        {
-            FlurlHttp.Configure(c => c.HttpClientFactory = new TestModelHttpClientFactory());
-
-            var result = await "https://some.url"
-                .GetXDocumentAsync(_ct);
 
             AssertXDocument(result, 3, "Test");
         }
@@ -97,28 +66,6 @@ namespace Flurl.Http.Xml.Tests
             AssertXDocument(result.FirstOrDefault()?.Document, 3, "Test");
         }
 
-        [Fact]
-        public async Task GetXElementsFromXPathWithCancellationTokenAsync()
-        {
-            FlurlHttp.Configure(c => c.HttpClientFactory = new TestModelHttpClientFactory());
-
-            var result = await "https://some.url"
-                .GetXElementsFromXPath("/TestModel", _ct);
-
-            AssertXDocument(result.FirstOrDefault()?.Document, 3, "Test");
-        }
-
-        [Fact]
-        public async Task GetXElementsFromXPathNamespaceResolverWithCancellationTokenAsync()
-        {
-            FlurlHttp.Configure(c => c.HttpClientFactory = new TestModelHttpClientFactory());
-
-            var result = await "https://some.url"
-                .GetXElementsFromXPath("/TestModel", new XmlNamespaceManager(new NameTable()), _ct);
-
-            AssertXDocument(result.FirstOrDefault()?.Document, 3, "Test");
-        }
-
         [Theory]
         [InlineData(HttpMethodTypes.Post)]
         [InlineData(HttpMethodTypes.Put)]
@@ -129,21 +76,6 @@ namespace Flurl.Http.Xml.Tests
             var method = HttpMethodByType[methodType];
             var result = await "http://some.url"
                 .SendXmlAsync(method, new TestModel { Number = 3, Text = "Test" })
-                .ReceiveXml<TestModel>();
-
-            AssertTestModel(result, 3, "Test");
-        }
-
-        [Theory]
-        [InlineData(HttpMethodTypes.Post)]
-        [InlineData(HttpMethodTypes.Put)]
-        public async Task SendXmlToModelWithCancellationTokenAsync(HttpMethodTypes methodType)
-        {
-            FlurlHttp.Configure(c => c.HttpClientFactory = new EchoHttpClientFactory());
-
-            var method = HttpMethodByType[methodType];
-            var result = await "http://some.url"
-                .SendXmlAsync(method, new TestModel { Number = 3, Text = "Test" }, _ct)
                 .ReceiveXml<TestModel>();
 
             AssertTestModel(result, 3, "Test");
@@ -164,21 +96,6 @@ namespace Flurl.Http.Xml.Tests
             AssertXDocument(result, 3, "Test");
         }
 
-        [Theory]
-        [InlineData(HttpMethodTypes.Post)]
-        [InlineData(HttpMethodTypes.Put)]
-        public async Task SendXmlToXDocumentWithCancellationTokenAsync(HttpMethodTypes methodType)
-        {
-            FlurlHttp.Configure(c => c.HttpClientFactory = new EchoHttpClientFactory());
-
-            var method = HttpMethodByType[methodType];
-            var result = await "http://some.url"
-                .SendXmlAsync(method, new TestModel { Number = 3, Text = "Test" }, _ct)
-                .ReceiveXDocument();
-
-            AssertXDocument(result, 3, "Test");
-        }
-
         [Fact]
         public async Task PostXmlToModelAsync()
         {
@@ -186,18 +103,6 @@ namespace Flurl.Http.Xml.Tests
 
             var result = await "http://some.url"
                 .PostXmlAsync(new TestModel { Number = 3, Text = "Test" })
-                .ReceiveXml<TestModel>();
-
-            AssertTestModel(result, 3, "Test");
-        }
-
-        [Fact]
-        public async Task PostXmlToModelWithCancellationTokenAsync()
-        {
-            FlurlHttp.Configure(c => c.HttpClientFactory = new EchoHttpClientFactory());
-
-            var result = await "http://some.url"
-                .PostXmlAsync(new TestModel { Number = 3, Text = "Test" }, _ct)
                 .ReceiveXml<TestModel>();
 
             AssertTestModel(result, 3, "Test");
@@ -216,18 +121,6 @@ namespace Flurl.Http.Xml.Tests
         }
 
         [Fact]
-        public async Task PostXmlToXDocumentWithCancellationTokenAsync()
-        {
-            FlurlHttp.Configure(c => c.HttpClientFactory = new EchoHttpClientFactory());
-
-            var result = await "http://some.url"
-                .PostXmlAsync(new TestModel { Number = 3, Text = "Test" }, _ct)
-                .ReceiveXDocument();
-
-            AssertXDocument(result, 3, "Test");
-        }
-
-        [Fact]
         public async Task PutXmlToModelAsync()
         {
             FlurlHttp.Configure(c => c.HttpClientFactory = new EchoHttpClientFactory());
@@ -240,36 +133,12 @@ namespace Flurl.Http.Xml.Tests
         }
 
         [Fact]
-        public async Task PutXmlToModelWithCancellationTokenAsync()
-        {
-            FlurlHttp.Configure(c => c.HttpClientFactory = new EchoHttpClientFactory());
-
-            var result = await "http://some.url"
-                .PutXmlAsync(new TestModel { Number = 3, Text = "Test" }, _ct)
-                .ReceiveXml<TestModel>();
-
-            AssertTestModel(result, 3, "Test");
-        }
-
-        [Fact]
         public async Task PutXmlToXDocumentAsync()
         {
             FlurlHttp.Configure(c => c.HttpClientFactory = new EchoHttpClientFactory());
 
             var result = await "http://some.url"
                 .PutXmlAsync(new TestModel { Number = 3, Text = "Test" })
-                .ReceiveXDocument();
-
-            AssertXDocument(result, 3, "Test");
-        }
-
-        [Fact]
-        public async Task PutXmlToXDocumentWithCancellationTokenAsync()
-        {
-            FlurlHttp.Configure(c => c.HttpClientFactory = new EchoHttpClientFactory());
-
-            var result = await "http://some.url"
-                .PutXmlAsync(new TestModel { Number = 3, Text = "Test" }, _ct)
                 .ReceiveXDocument();
 
             AssertXDocument(result, 3, "Test");

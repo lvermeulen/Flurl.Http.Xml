@@ -19,46 +19,30 @@ namespace Flurl.Http.Xml
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="request">The request.</param>
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation. Optional.</param>
+        /// <param name="completionOption">The HttpCompletionOption used in the request. Optional.</param>
         /// <returns>
         /// A Task whose result is the XML response body deserialized to an object of type T.
         /// </returns>
-        public static async Task<T> GetXmlAsync<T>(this IFlurlRequest request, CancellationToken cancellationToken)
+        public static Task<T> GetXmlAsync<T>(this IFlurlRequest request, 
+            CancellationToken cancellationToken = default(CancellationToken), HttpCompletionOption completionOption = HttpCompletionOption.ResponseContentRead)
         {
-            return await request.SendAsync(HttpMethod.Get, cancellationToken: cancellationToken).ReceiveXml<T>();
+            return request.SendAsync(HttpMethod.Get, null, cancellationToken, completionOption).ReceiveXml<T>();
         }
 
         /// <summary>
         /// Sends an asynchronous GET request.
         /// </summary>
         /// <param name="request">The request.</param>
-        /// <returns>A Task whose result is the XML response body deserialized to an object of type T.</returns>
-        public static async Task<T> GetXmlAsync<T>(this IFlurlRequest request)
-        {
-            return await request.SendAsync(HttpMethod.Get).ReceiveXml<T>();
-        }
-
-        /// <summary>
-        /// Sends an asynchronous GET request.
-        /// </summary>
-        /// <param name="request">The request.</param>
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation. Optional.</param>
+        /// <param name="completionOption">The HttpCompletionOption used in the request. Optional.</param>
         /// <returns>
         /// A Task whose result is the XML response body parsed into an XDocument.
         /// </returns>
-        public static async Task<XDocument> GetXDocumentAsync(this IFlurlRequest request, CancellationToken cancellationToken)
+        public static Task<XDocument> GetXDocumentAsync(this IFlurlRequest request, 
+            CancellationToken cancellationToken = default(CancellationToken), HttpCompletionOption completionOption = HttpCompletionOption.ResponseContentRead)
         {
-            return await request.SendAsync(HttpMethod.Get, cancellationToken: cancellationToken).ReceiveXDocument();
-        }
-
-        /// <summary>
-        /// Sends an asynchronous GET request.
-        /// </summary>
-        /// <param name="request">The request.</param>
-        /// <returns>A Task whose result is the XML response body parsed into an XDocument.</returns>
-        public static async Task<XDocument> GetXDocumentAsync(this IFlurlRequest request)
-        {
-            return await request.SendAsync(HttpMethod.Get).ReceiveXDocument();
+            return request.SendAsync(HttpMethod.Get, null, cancellationToken, completionOption).ReceiveXDocument();
         }
 
         /// <summary>
@@ -66,22 +50,15 @@ namespace Flurl.Http.Xml
         /// </summary>
         /// <param name="request">The request.</param>
         /// <param name="expression">The expression.</param>
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation. Optional.</param>
+        /// <param name="completionOption">The HttpCompletionOption used in the request. Optional.</param>
         /// <returns>
         /// A Task whose result is the XML response body parsed into a collection of XElements.
         /// </returns>
-        public static async Task<IEnumerable<XElement>> GetXElementsFromXPath(this IFlurlRequest request, string expression, CancellationToken cancellationToken)
+        public static Task<IEnumerable<XElement>> GetXElementsFromXPath(this IFlurlRequest request, string expression, 
+            CancellationToken cancellationToken = default(CancellationToken), HttpCompletionOption completionOption = HttpCompletionOption.ResponseContentRead)
         {
-            return await request.SendAsync(HttpMethod.Get, cancellationToken: cancellationToken).ReceiveXElementsFromXPath(expression);
-        }
-
-        /// <summary>
-        /// Sends an asynchronous GET request.
-        /// </summary>
-        /// <returns>A Task whose result is the XML response body parsed into a collection of XElements.</returns>
-        public static async Task<IEnumerable<XElement>> GetXElementsFromXPath(this IFlurlRequest request, string expression)
-        {
-            return await request.SendAsync(HttpMethod.Get).ReceiveXElementsFromXPath(expression);
+            return request.SendAsync(HttpMethod.Get, null, cancellationToken, completionOption).ReceiveXElementsFromXPath(expression);
         }
 
         /// <summary>
@@ -90,25 +67,18 @@ namespace Flurl.Http.Xml
         /// <param name="request">The request.</param>
         /// <param name="expression">The expression.</param>
         /// <param name="resolver">The resolver.</param>
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation. Optional.</param>
+        /// <param name="completionOption">The HttpCompletionOption used in the request. Optional.</param>
         /// <returns>
         /// A Task whose result is the XML response body parsed into a collection of XElements.
         /// </returns>
-        public static async Task<IEnumerable<XElement>> GetXElementsFromXPath(this IFlurlRequest request, string expression, IXmlNamespaceResolver resolver, CancellationToken cancellationToken)
+        public static Task<IEnumerable<XElement>> GetXElementsFromXPath(this IFlurlRequest request, string expression, IXmlNamespaceResolver resolver, 
+            CancellationToken cancellationToken = default(CancellationToken), HttpCompletionOption completionOption = HttpCompletionOption.ResponseContentRead)
         {
-            return await request.SendAsync(HttpMethod.Get, cancellationToken: cancellationToken).ReceiveXElementsFromXPath(expression, resolver);
+            return request.SendAsync(HttpMethod.Get, null, cancellationToken, completionOption).ReceiveXElementsFromXPath(expression, resolver);
         }
 
-        /// <summary>
-        /// Sends an asynchronous GET request.
-        /// </summary>
-        /// <returns>A Task whose result is the XML response body parsed into a collection of XElements.</returns>
-        public static async Task<IEnumerable<XElement>> GetXElementsFromXPath(this IFlurlRequest request, string expression, IXmlNamespaceResolver resolver)
-        {
-            return await request.SendAsync(HttpMethod.Get).ReceiveXElementsFromXPath(expression, resolver);
-        }
-
-        internal static string GetMediaType(this IFlurlRequest request)
+        private static string GetMediaType(this IFlurlRequest request)
         {
             var acceptHeaders = request.Headers
                 .Where(x => x.Key == "Accept")
@@ -137,29 +107,16 @@ namespace Flurl.Http.Xml
         /// <param name="request">The request.</param>
         /// <param name="httpMethod">HTTP method of the request</param>
         /// <param name="data">Contents of the request body.</param>
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation. Optional.</param>
+        /// <param name="completionOption">The HttpCompletionOption used in the request. Optional.</param>
         /// <returns>
         /// A Task whose result is the received HttpResponseMessage.
         /// </returns>
-        public static async Task<HttpResponseMessage> SendXmlAsync(this IFlurlRequest request, HttpMethod httpMethod, object data, CancellationToken cancellationToken)
+        public static async Task<HttpResponseMessage> SendXmlAsync(this IFlurlRequest request, HttpMethod httpMethod, object data, 
+            CancellationToken cancellationToken = default(CancellationToken), HttpCompletionOption completionOption = HttpCompletionOption.ResponseContentRead)
         {
             var content = new CapturedXmlContent(request.Settings.XmlSerializer().Serialize(data), request.GetMediaType());
-            return await request.SendAsync(httpMethod, content: content, cancellationToken: cancellationToken);
-        }
-
-        /// <summary>
-        /// Sends an asynchronous HTTP request.
-        /// </summary>
-        /// <param name="request">The request.</param>
-        /// <param name="httpMethod">HTTP method of the request</param>
-	    /// <param name="data">Contents of the request body.</param>
-        /// <returns>
-        /// A Task whose result is the received HttpResponseMessage.
-        /// </returns>
-        public static async Task<HttpResponseMessage> SendXmlAsync(this IFlurlRequest request, HttpMethod httpMethod, object data)
-        {
-            var content = new CapturedXmlContent(request.Settings.XmlSerializer().Serialize(data), request.GetMediaType());
-            return await request.SendAsync(httpMethod, content: content);
+            return await request.SendAsync(httpMethod, content, cancellationToken, completionOption);
         }
 
         /// <summary>
@@ -167,45 +124,27 @@ namespace Flurl.Http.Xml
         /// </summary>
         /// <param name="request">The request.</param>
         /// <param name="data">Contents of the request body.</param>
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation. Optional.</param>
+        /// <param name="completionOption">The HttpCompletionOption used in the request. Optional.</param>
         /// <returns>
         /// A Task whose result is the received HttpResponseMessage.
         /// </returns>
-        public static Task<HttpResponseMessage> PostXmlAsync(this IFlurlRequest request, object data, CancellationToken cancellationToken) =>
-            SendXmlAsync(request, HttpMethod.Post, data, cancellationToken);
-
-        /// <summary>
-        /// Sends an asynchronous POST request.
-        /// </summary>
-        /// <param name="request">The request.</param>
-        /// <param name="data">Contents of the request body.</param>
-        /// <returns>
-        /// A Task whose result is the received HttpResponseMessage.
-        /// </returns>
-        public static Task<HttpResponseMessage> PostXmlAsync(this IFlurlRequest request, object data) =>
-            SendXmlAsync(request, HttpMethod.Post, data);
+        public static Task<HttpResponseMessage> PostXmlAsync(this IFlurlRequest request, object data, 
+            CancellationToken cancellationToken = default(CancellationToken), HttpCompletionOption completionOption = HttpCompletionOption.ResponseContentRead) =>
+            SendXmlAsync(request, HttpMethod.Post, data, cancellationToken, completionOption);
 
         /// <summary>
         /// Sends an asynchronous PUT request.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <param name="data">Contents of the request body.</param>
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation. Optional.</param>
+        /// <param name="completionOption">The HttpCompletionOption used in the request. Optional.</param>
         /// <returns>
         /// A Task whose result is the received HttpResponseMessage.
         /// </returns>
-        public static Task<HttpResponseMessage> PutXmlAsync(this IFlurlRequest request, object data, CancellationToken cancellationToken) =>
-            SendXmlAsync(request, HttpMethod.Put, data, cancellationToken);
-
-        /// <summary>
-        /// Sends an asynchronous PUT request.
-        /// </summary>
-        /// <param name="request">The request.</param>
-        /// <param name="data">Contents of the request body.</param>
-        /// <returns>
-        /// A Task whose result is the received HttpResponseMessage.
-        /// </returns>
-        public static Task<HttpResponseMessage> PutXmlAsync(this IFlurlRequest request, object data) =>
-            SendXmlAsync(request, HttpMethod.Put, data);
+        public static Task<HttpResponseMessage> PutXmlAsync(this IFlurlRequest request, object data, 
+            CancellationToken cancellationToken = default(CancellationToken), HttpCompletionOption completionOption = HttpCompletionOption.ResponseContentRead) =>
+            SendXmlAsync(request, HttpMethod.Put, data, cancellationToken, completionOption);
     }
 }
