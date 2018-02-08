@@ -4,6 +4,7 @@ branches:
   - master
 pull_requests:
   do_not_increment_build_number: true
+image: Visual Studio 2017
 environment:
   COVERALLS_REPO_TOKEN:
     secure: kDcf0mhCCCONpQVpeaA6M5qIuuLggG7lfv1tCMiZCzUmdjtmoIcwFaRQRf00bIdn
@@ -15,10 +16,10 @@ test_script:
     if ($true)
     {
         .\build\test.ps1
-        .\build\cover.ps1 "$env:COVERALLS_REPO_TOKEN" "$env:COVER_FILTER"
+        #.\build\cover.ps1 "$env:COVERALLS_REPO_TOKEN" "$env:COVER_FILTER"
     }
 artifacts:
-- path: '**\*.nupkg'
+- path: '.\artifacts\*.nupkg'
 deploy:
 - provider: NuGet
   api_key:

@@ -1,25 +1,25 @@
 param (
-    [string]$BuildVersionNumber=$(throw "-BuildVersionNumber is required."),
-    [string]$TagVersionNumber
+	[string]$BuildVersionNumber=$(throw "-BuildVersionNumber is required."),
+	[string]$TagVersionNumber
 )
 
-# set version number in package.json
-Get-ChildItem -Path $PSScriptRoot\..\src -Filter *.csproj -Recurse | ForEach-Object{ 
-    $ProjectPath =  $_.FullName
-    if ($TagVersionNumber){
-        (gc -Path $ProjectPath) `
-            -replace "(?<=`"version`":\s`")[.\w-]*(?=`",)", "$TagVersionNumber" |
-                sc -Path $ProjectPath -Encoding UTF8
+& dotnet restore --no-cache
+
+foreach ($src in ls $PSScriptRoot\..\src/*) {
+    Push-Location $src
+
+	Write-Output "build: Building & packaging project in $src"
+
+    if ($TagVersionNumber -ne $null) {
+        $version = $TagVersionNumber
     }
-    else{
-        (gc -Path $ProjectPath) `
-            -replace "(?<=`"version`":\s`")[.\w-]*(?=`",)", "$BuildVersionNumber" |
-                sc -Path $ProjectPath -Encoding UTF8
+    else {
+        $version = $BuildVersionNumber
     }
+
+    & dotnet build -c Release
+    & dotnet pack -c Release --include-symbols -o ..\..\artifacts --no-build /p:PackageVersion=$version
+    if($LASTEXITCODE -ne 0) { exit 1 }    
+
+    Pop-Location
 }
-
-# run restore on all project.json files in the src folder including 2>1 to redirect stderr to stdout for badly behaved tools
-Get-ChildItem -Path $PSScriptRoot\..\src -Filter *.csproj -Recurse | ForEach-Object { & dotnet restore $_.FullName 2>1 }
-
-# run pack on all project.json files in the src folder including 2>1 to redirect stderr to stdout for badly behaved tools
-Get-ChildItem -Path $PSScriptRoot\..\src -Filter *.csproj -Recurse | ForEach-Object { & dotnet pack $_.FullName -c Release 2>1 }
