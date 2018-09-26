@@ -9,6 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitignore = .gitignore
 		appveyor.yml = appveyor.yml
 		codecov.yml = codecov.yml
+		global.json = global.json
 		README.md = README.md
 	EndProjectSection
 EndProject
@@ -46,5 +47,8 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{7BA9BC27-1501-47EA-90FF-BCDBD25CA8B8} = {5B74B194-432C-4581-B683-22FB89C46AD3}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7B202065-8A02-433F-93A2-248DC8ABB65B}
 	EndGlobalSection
 EndGlobal
