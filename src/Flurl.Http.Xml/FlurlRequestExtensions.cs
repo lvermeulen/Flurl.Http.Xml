@@ -78,7 +78,7 @@ namespace Flurl.Http.Xml
             return request.SendAsync(HttpMethod.Get, null, cancellationToken, completionOption).ReceiveXElementsFromXPath(expression, resolver);
         }
 
-        private static string GetMediaType(this IFlurlRequest request)
+        private static string GetMediaType(this IHttpSettingsContainer request)
         {
             var acceptHeaders = request.Headers
                 .Where(x => x.Key == "Accept")

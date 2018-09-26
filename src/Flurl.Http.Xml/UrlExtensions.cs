@@ -7,11 +7,11 @@ using System.Xml.Linq;
 
 namespace Flurl.Http.Xml
 {
-	/// <summary>
-	/// UrlExtensions
-	/// </summary>
-	public static class UrlExtensions
-	{
+    /// <summary>
+    /// UrlExtensions
+    /// </summary>
+    public static class UrlExtensions
+    {
         /// <summary>
         /// Sends an asynchronous GET request.
         /// </summary>
@@ -98,5 +98,5 @@ namespace Flurl.Http.Xml
         public static Task<HttpResponseMessage> PutXmlAsync(this Url url, object data, 
             CancellationToken cancellationToken = default(CancellationToken), HttpCompletionOption completionOption = HttpCompletionOption.ResponseContentRead) => 
             new FlurlRequest(url).PutXmlAsync(data, cancellationToken, completionOption);
-	}
+    }
 }
