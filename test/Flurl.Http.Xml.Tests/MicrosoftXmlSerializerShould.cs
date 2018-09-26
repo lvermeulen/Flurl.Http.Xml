@@ -3,6 +3,8 @@ using System.Xml;
 using Flurl.Http.Xml.Tests.Models;
 using Xunit;
 
+[assembly: CollectionBehavior(DisableTestParallelization = true)]
+
 namespace Flurl.Http.Xml.Tests
 {
     public class MicrosoftXmlSerializerShould
