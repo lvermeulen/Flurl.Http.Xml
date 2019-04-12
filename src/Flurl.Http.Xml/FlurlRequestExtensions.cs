@@ -97,8 +97,8 @@ namespace Flurl.Http.Xml
                 .Select(x => x.Trim())
                 .ToList();
 
-            return mediaTypes.First(x => x.IndexOf("xml", StringComparison.OrdinalIgnoreCase) >= 0) 
-                ?? mediaTypes.First();
+            return mediaTypes.FirstOrDefault(x => x.IndexOf("xml", StringComparison.OrdinalIgnoreCase) >= 0) 
+                ?? mediaTypes.FirstOrDefault();
         }
 
         /// <summary>
