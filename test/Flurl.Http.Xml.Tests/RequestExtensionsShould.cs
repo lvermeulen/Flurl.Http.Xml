@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
@@ -26,7 +25,7 @@ namespace Flurl.Http.Xml.Tests
         [Fact]
         public async Task GetXmlAsync()
         {
-            FlurlHttp.Configure(c => c.HttpClientFactory = new TestModelHttpClientFactory());
+            FlurlHttp.Configure(c => c.HttpClientFactory = new XmlTestModelHttpClientFactory());
 
             var result = await new Url("https://some.url")
                 .AllowAnyHttpStatus()
@@ -38,7 +37,7 @@ namespace Flurl.Http.Xml.Tests
         [Fact]
         public async Task GetXDocumentAsync()
         {
-            FlurlHttp.Configure(c => c.HttpClientFactory = new TestModelHttpClientFactory());
+            FlurlHttp.Configure(c => c.HttpClientFactory = new XmlTestModelHttpClientFactory());
 
             var result = await new Url("https://some.url")
                 .AllowAnyHttpStatus()
@@ -50,7 +49,7 @@ namespace Flurl.Http.Xml.Tests
         [Fact]
         public async Task GetXElementsFromXPathAsync()
         {
-            FlurlHttp.Configure(c => c.HttpClientFactory = new TestModelHttpClientFactory());
+            FlurlHttp.Configure(c => c.HttpClientFactory = new XmlTestModelHttpClientFactory());
 
             var result = await new Url("https://some.url")
                 .AllowAnyHttpStatus()
@@ -62,7 +61,7 @@ namespace Flurl.Http.Xml.Tests
         [Fact]
         public async Task GetXElementsFromXPathNamespaceResolverAsync()
         {
-            FlurlHttp.Configure(c => c.HttpClientFactory = new TestModelHttpClientFactory());
+            FlurlHttp.Configure(c => c.HttpClientFactory = new XmlTestModelHttpClientFactory());
 
             var result = await new Url("https://some.url")
                 .AllowAnyHttpStatus()
@@ -156,20 +155,57 @@ namespace Flurl.Http.Xml.Tests
         }
 
         [Theory]
-        [InlineData("Accept", "text/xml, application/xml", "text/xml")]
-        [InlineData("Accept", "text/something+xml", "text/something+xml")]
-        [InlineData("Accept", null, "application/xml")]
         [InlineData("", null, "application/xml")]
+        [InlineData("Accept", "application/json", "application/json")]
+        [InlineData("Accept", "text/something+xml", "text/something+xml")]
+        [InlineData("Accept", "text/xml, application/xml", "text/xml")]
+        [InlineData("Accept", null, "application/xml")]
         public async Task ReceiveCorrectMediaType(string headerName, string acceptMediaType, string expectedContentType)
         {
             FlurlHttp.Configure(c => c.HttpClientFactory = new EchoHttpClientFactory());
 
             var result = await new Url("https://some.url")
                 .WithHeader(headerName, acceptMediaType)
-                .SendXmlAsync(HttpMethod.Post, new TestModel { Number = 3, Text = "Test" })
+                .PostXmlAsync(new TestModel { Number = 3, Text = "Test" })
                 .ReceiveXmlResponseMessage();
 
             Assert.Equal(expectedContentType, result?.Content?.Headers?.ContentType?.MediaType);
+        }
+
+        [Theory]
+        [InlineData("", null)]
+        [InlineData("Accept", "application/json")]
+        [InlineData("Accept", "text/something+xml")]
+        [InlineData("Accept", "text/xml, application/xml")]
+        [InlineData("Accept", null)]
+        public async Task ReceiveCorrectMediaTypeWithXmlResponse(string headerName, string acceptMediaType)
+        {
+            FlurlHttp.Configure(c => c.HttpClientFactory = new XmlTestModelHttpClientFactory());
+
+            var result = await new Url("https://some.url")
+                .WithHeader(headerName, acceptMediaType)
+                .PostXmlAsync(new TestModel { Number = 3, Text = "Test" })
+                .ReceiveXml<TestModel>();
+
+            AssertTestModel(result, 3, "Test");
+        }
+
+        [Theory]
+        [InlineData("", null)]
+        [InlineData("Accept", "application/json")]
+        [InlineData("Accept", "text/something+xml")]
+        [InlineData("Accept", "text/xml, application/xml")]
+        [InlineData("Accept", null)]
+        public async Task ReceiveCorrectMediaTypeWithJsonResponse(string headerName, string acceptMediaType)
+        {
+            FlurlHttp.Configure(c => c.HttpClientFactory = new JsonTestModelHttpClientFactory());
+
+            var result = await new Url("https://some.url")
+                .WithHeader(headerName, acceptMediaType)
+                .PostXmlAsync(new TestModel { Number = 3, Text = "Test" })
+                .ReceiveJson<TestModel>();
+
+            AssertTestModel(result, 3, "Test");
         }
     }
 }

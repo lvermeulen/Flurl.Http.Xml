@@ -32,10 +32,8 @@ namespace Flurl.Http.Xml
                 // return media type of first accepted media type containing "xml", else of first accepted media type
                 var acceptHeader = request.Headers.Accept.FirstOrDefault(x => x.MediaType.IndexOf("xml", StringComparison.OrdinalIgnoreCase) >= 0) 
                     ?? request.Headers.Accept.FirstOrDefault();
-                if (acceptHeader != null)
-                {
-                    return acceptHeader.MediaType;
-                }
+
+                return acceptHeader?.MediaType;
             }
 
             // no accepted media type present, return default

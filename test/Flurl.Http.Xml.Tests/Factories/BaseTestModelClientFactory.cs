@@ -1,4 +1,4 @@
-using System.Net.Http;
+﻿using System.Net.Http;
 using Flurl.Http.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -7,13 +7,14 @@ using Microsoft.AspNetCore.TestHost;
 
 namespace Flurl.Http.Xml.Tests.Factories
 {
-    public class TestModelHttpClientFactory : DefaultHttpClientFactory
+    public abstract class BaseTestModelClientFactory : DefaultHttpClientFactory
     {
-        private const string REQUEST_BODY = @"<?xml version=""1.0"" encoding=""utf-8""?>
-<TestModel xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
-  <Number>3</Number>
-  <Text>Test</Text>
-</TestModel>";
+        private readonly string _responseBody;
+
+        protected BaseTestModelClientFactory(string responseBody)
+        {
+            _responseBody = responseBody;
+        }
 
         private HttpClient GetClient()
         {
@@ -21,7 +22,7 @@ namespace Flurl.Http.Xml.Tests.Factories
             {
                 app.Use(async (context, next) =>
                 {
-                    await context.Response.WriteAsync(REQUEST_BODY);
+                    await context.Response.WriteAsync(_responseBody);
                 });
             });
 

@@ -25,7 +25,7 @@ namespace Flurl.Http.Xml.Tests
         [Fact]
         public async Task GetXmlAsync()
         {
-            FlurlHttp.Configure(c => c.HttpClientFactory = new TestModelHttpClientFactory());
+            FlurlHttp.Configure(c => c.HttpClientFactory = new XmlTestModelHttpClientFactory());
 
             var result = await "https://some.url"
                 .GetXmlAsync<TestModel>();
@@ -36,7 +36,7 @@ namespace Flurl.Http.Xml.Tests
         [Fact]
         public async Task GetXDocumentAsync()
         {
-            FlurlHttp.Configure(c => c.HttpClientFactory = new TestModelHttpClientFactory());
+            FlurlHttp.Configure(c => c.HttpClientFactory = new XmlTestModelHttpClientFactory());
 
             var result = await "https://some.url"
                 .GetXDocumentAsync();
@@ -47,7 +47,7 @@ namespace Flurl.Http.Xml.Tests
         [Fact]
         public async Task GetXElementsFromXPathAsync()
         {
-            FlurlHttp.Configure(c => c.HttpClientFactory = new TestModelHttpClientFactory());
+            FlurlHttp.Configure(c => c.HttpClientFactory = new XmlTestModelHttpClientFactory());
 
             var result = await "https://some.url"
                 .GetXElementsFromXPath("/TestModel");
@@ -58,7 +58,7 @@ namespace Flurl.Http.Xml.Tests
         [Fact]
         public async Task GetXElementsFromXPathNamespaceResolverAsync()
         {
-            FlurlHttp.Configure(c => c.HttpClientFactory = new TestModelHttpClientFactory());
+            FlurlHttp.Configure(c => c.HttpClientFactory = new XmlTestModelHttpClientFactory());
 
             var result = await "https://some.url"
                 .GetXElementsFromXPath("/TestModel", new XmlNamespaceManager(new NameTable()));
