@@ -7,7 +7,7 @@ namespace Flurl.Http.Xml
     /// Utf8StringWriter
     /// </summary>
     /// <seealso cref="System.IO.StringWriter" />
-    public class Utf8StringWriter : StringWriter
+    internal class Utf8StringWriter : StringWriter
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Utf8StringWriter"/> class.
