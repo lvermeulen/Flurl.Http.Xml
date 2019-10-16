@@ -25,7 +25,7 @@ namespace Flurl.Http.Xml
         /// A Task whose result is the XML response body deserialized to an object of type T.
         /// </returns>
         public static Task<T> GetXmlAsync<T>(this IFlurlRequest request, 
-            CancellationToken cancellationToken = default(CancellationToken), HttpCompletionOption completionOption = HttpCompletionOption.ResponseContentRead)
+            CancellationToken cancellationToken = default, HttpCompletionOption completionOption = HttpCompletionOption.ResponseContentRead)
         {
             return request.SendAsync(HttpMethod.Get, null, cancellationToken, completionOption).ReceiveXml<T>();
         }
@@ -40,7 +40,7 @@ namespace Flurl.Http.Xml
         /// A Task whose result is the XML response body parsed into an XDocument.
         /// </returns>
         public static Task<XDocument> GetXDocumentAsync(this IFlurlRequest request, 
-            CancellationToken cancellationToken = default(CancellationToken), HttpCompletionOption completionOption = HttpCompletionOption.ResponseContentRead)
+            CancellationToken cancellationToken = default, HttpCompletionOption completionOption = HttpCompletionOption.ResponseContentRead)
         {
             return request.SendAsync(HttpMethod.Get, null, cancellationToken, completionOption).ReceiveXDocument();
         }
@@ -56,7 +56,7 @@ namespace Flurl.Http.Xml
         /// A Task whose result is the XML response body parsed into a collection of XElements.
         /// </returns>
         public static Task<IEnumerable<XElement>> GetXElementsFromXPath(this IFlurlRequest request, string expression, 
-            CancellationToken cancellationToken = default(CancellationToken), HttpCompletionOption completionOption = HttpCompletionOption.ResponseContentRead)
+            CancellationToken cancellationToken = default, HttpCompletionOption completionOption = HttpCompletionOption.ResponseContentRead)
         {
             return request.SendAsync(HttpMethod.Get, null, cancellationToken, completionOption).ReceiveXElementsFromXPath(expression);
         }
@@ -73,7 +73,7 @@ namespace Flurl.Http.Xml
         /// A Task whose result is the XML response body parsed into a collection of XElements.
         /// </returns>
         public static Task<IEnumerable<XElement>> GetXElementsFromXPath(this IFlurlRequest request, string expression, IXmlNamespaceResolver resolver, 
-            CancellationToken cancellationToken = default(CancellationToken), HttpCompletionOption completionOption = HttpCompletionOption.ResponseContentRead)
+            CancellationToken cancellationToken = default, HttpCompletionOption completionOption = HttpCompletionOption.ResponseContentRead)
         {
             return request.SendAsync(HttpMethod.Get, null, cancellationToken, completionOption).ReceiveXElementsFromXPath(expression, resolver);
         }
@@ -113,7 +113,7 @@ namespace Flurl.Http.Xml
         /// A Task whose result is the received HttpResponseMessage.
         /// </returns>
         public static async Task<HttpResponseMessage> SendXmlAsync(this IFlurlRequest request, HttpMethod httpMethod, object data, 
-            CancellationToken cancellationToken = default(CancellationToken), HttpCompletionOption completionOption = HttpCompletionOption.ResponseContentRead)
+            CancellationToken cancellationToken = default, HttpCompletionOption completionOption = HttpCompletionOption.ResponseContentRead)
         {
             var content = new CapturedXmlContent(request.Settings.XmlSerializer().Serialize(data), request.GetMediaType());
             return await request.SendAsync(httpMethod, content, cancellationToken, completionOption);
@@ -130,7 +130,7 @@ namespace Flurl.Http.Xml
         /// A Task whose result is the received HttpResponseMessage.
         /// </returns>
         public static Task<HttpResponseMessage> PostXmlAsync(this IFlurlRequest request, object data, 
-            CancellationToken cancellationToken = default(CancellationToken), HttpCompletionOption completionOption = HttpCompletionOption.ResponseContentRead) =>
+            CancellationToken cancellationToken = default, HttpCompletionOption completionOption = HttpCompletionOption.ResponseContentRead) =>
             SendXmlAsync(request, HttpMethod.Post, data, cancellationToken, completionOption);
 
         /// <summary>
@@ -144,7 +144,7 @@ namespace Flurl.Http.Xml
         /// A Task whose result is the received HttpResponseMessage.
         /// </returns>
         public static Task<HttpResponseMessage> PutXmlAsync(this IFlurlRequest request, object data, 
-            CancellationToken cancellationToken = default(CancellationToken), HttpCompletionOption completionOption = HttpCompletionOption.ResponseContentRead) =>
+            CancellationToken cancellationToken = default, HttpCompletionOption completionOption = HttpCompletionOption.ResponseContentRead) =>
             SendXmlAsync(request, HttpMethod.Put, data, cancellationToken, completionOption);
     }
 }

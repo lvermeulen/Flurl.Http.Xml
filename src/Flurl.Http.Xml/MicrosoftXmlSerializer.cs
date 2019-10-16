@@ -75,13 +75,13 @@ namespace Flurl.Http.Xml
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="s">The string.</param>
-        public T Deserialize<T>(string s) => string.IsNullOrWhiteSpace(s) ? default(T) : DeserializeInternal<T>(new StringReader(s));
+        public T Deserialize<T>(string s) => string.IsNullOrWhiteSpace(s) ? default : DeserializeInternal<T>(new StringReader(s));
 
         /// <summary>
         /// Deserializes an object from a stream representation.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="stream">The stream.</param>
-        public T Deserialize<T>(Stream stream) => stream == null ? default(T) : DeserializeInternal<T>(new StreamReader(stream));
+        public T Deserialize<T>(Stream stream) => stream == null ? default : DeserializeInternal<T>(new StreamReader(stream));
     }
 }
