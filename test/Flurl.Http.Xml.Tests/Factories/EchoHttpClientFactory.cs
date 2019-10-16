@@ -5,7 +5,6 @@ using Flurl.Http.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.Internal;
 using Microsoft.AspNetCore.TestHost;
 
 namespace Flurl.Http.Xml.Tests.Factories
@@ -16,7 +15,7 @@ namespace Flurl.Http.Xml.Tests.Factories
         {
             string result;
 
-            httpRequest.EnableRewind();
+            httpRequest.EnableBuffering();
 
             using (var reader = new StreamReader(httpRequest.Body, Encoding.UTF8, true, 1024, true))
             {
