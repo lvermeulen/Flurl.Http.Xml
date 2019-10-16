@@ -14,7 +14,6 @@
     <PackageIconUrl>http://i.imgur.com/llEKpRL.png?1</PackageIconUrl>
     <PackageProjectUrl>https://github.com/lvermeulen/Flurl.Http.Xml</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/lvermeulen/Flurl.Http.Xml/blob/master/LICENSE</PackageLicenseUrl>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/lvermeulen/Flurl.Http.Xml</RepositoryUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
