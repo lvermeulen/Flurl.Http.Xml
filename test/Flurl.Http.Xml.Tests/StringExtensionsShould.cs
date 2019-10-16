@@ -5,6 +5,7 @@ using System.Xml.Linq;
 using Flurl.Http.Xml.Tests.Factories;
 using Flurl.Http.Xml.Tests.Models;
 using Xunit;
+using Xunit.Extensions.Ordering;
 
 namespace Flurl.Http.Xml.Tests
 {
@@ -22,7 +23,7 @@ namespace Flurl.Http.Xml.Tests
             Assert.Equal(expectedText, document?.Element("TestModel")?.Element("Text")?.Value);
         }
 
-        [Fact]
+        [Fact, Order(2)]
         public async Task GetXmlAsync()
         {
             FlurlHttp.Configure(c => c.HttpClientFactory = new XmlTestModelHttpClientFactory());
@@ -33,7 +34,7 @@ namespace Flurl.Http.Xml.Tests
             AssertTestModel(result, 3, "Test");
         }
 
-        [Fact]
+        [Fact, Order(2)]
         public async Task GetXDocumentAsync()
         {
             FlurlHttp.Configure(c => c.HttpClientFactory = new XmlTestModelHttpClientFactory());
@@ -44,7 +45,7 @@ namespace Flurl.Http.Xml.Tests
             AssertXDocument(result, 3, "Test");
         }
 
-        [Fact]
+        [Fact, Order(2)]
         public async Task GetXElementsFromXPathAsync()
         {
             FlurlHttp.Configure(c => c.HttpClientFactory = new XmlTestModelHttpClientFactory());
@@ -55,7 +56,7 @@ namespace Flurl.Http.Xml.Tests
             AssertXDocument(result.FirstOrDefault()?.Document, 3, "Test");
         }
 
-        [Fact]
+        [Fact, Order(2)]
         public async Task GetXElementsFromXPathNamespaceResolverAsync()
         {
             FlurlHttp.Configure(c => c.HttpClientFactory = new XmlTestModelHttpClientFactory());
