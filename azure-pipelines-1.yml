@@ -1,0 +1,30 @@
+trigger:
+  tags:
+    include:
+    - ?*
+
+resources:
+  repositories:
+    - repository: templates
+      type: github
+      name: lvermeulen/Templates
+      ref: refs/tags/1.0.0
+      endpoint: lvermeulen
+
+jobs:
+- job: BuildPublish
+  displayName: Build and Publish Flurl.Http.Xml
+  pool:
+    vmImage: 'windows-2019'
+  steps:
+  - template: templates/dotnetcore/restore_build_test.yml@templates
+    parameters:
+      projects: '**/*.csproj'
+      testProjects: 'test/**/*.csproj'
+      buildConfiguration: 'Release'
+  - template: templates/dotnetcore/pack_push.yml@templates
+    parameters: 
+      projectsToPack: 'src/**/*.csproj'
+      buildConfiguration: 'Release'
+      nupkgFolder: '$(Build.ArtifactStagingDirectory)'
+      nugetServiceConnectionName: 'NuGet'
