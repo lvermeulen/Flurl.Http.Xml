@@ -38,7 +38,7 @@ namespace Flurl.Http.Xml.Tests.Factories
                 });
             });
 
-            var server = new TestServer(builder);
+            var server = new TestServer(builder) { AllowSynchronousIO = true };
             return server.CreateClient();
         }
 
