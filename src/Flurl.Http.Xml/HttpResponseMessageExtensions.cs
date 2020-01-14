@@ -12,13 +12,13 @@ using System.Xml.XPath;
 namespace Flurl.Http.Xml
 {
     /// <summary>
-    /// HttpResponseMessageExtensions
+    /// IFlurlResponseExtensions
     /// </summary>
-    public static class HttpResponseMessageExtensions
+    public static class IFlurlResponseExtensions
     {
-        private static HttpCall GetHttpCall(HttpRequestMessage request)
+        private static FlurlCall GetHttpCall(HttpRequestMessage request)
         {
-            if (request?.Properties != null && request.Properties.TryGetValue("FlurlHttpCall", out var obj) && obj is HttpCall call)
+            if (request?.Properties != null && request.Properties.TryGetValue("FlurlHttpCall", out var obj) && obj is FlurlCall call)
             {
                 return call;
             }
@@ -46,29 +46,29 @@ namespace Flurl.Http.Xml
         /// <param name="responseMessage">The response.</param>
         /// <returns>A Task whose result is a response message containing data in the response body.</returns>
         /// <example>x = await url.PostAsync(data).ReceiveXmlResponseMessage()</example>
-        public static async Task<HttpResponseMessage> ReceiveXmlResponseMessage(this Task<HttpResponseMessage> responseMessage)
+        public static async Task<IFlurlResponse> ReceiveXmlResponseMessage(this Task<IFlurlResponse> responseMessage)
         {
             var response = await responseMessage.ConfigureAwait(false);
-            response.Content.Headers.ContentType = new MediaTypeHeaderValue(GetMediaType(response.RequestMessage));
+            response.ResponseMessage.Content.Headers.ContentType = new MediaTypeHeaderValue(GetMediaType(response.ResponseMessage.RequestMessage));
 
             return response;
         }
 
-        private static async Task<T> ReceiveFromXmlStream<T>(this Task<HttpResponseMessage> response, Func<HttpCall, Stream, T> streamHandler)
+        private static async Task<T> ReceiveFromXmlStream<T>(this Task<IFlurlResponse> response, Func<FlurlCall, Stream, T> streamHandler)
         {
             var resp = await ReceiveXmlResponseMessage(response);
-            var call = GetHttpCall(resp.RequestMessage);
+            var call = GetHttpCall(resp.ResponseMessage.RequestMessage);
 
             try
             {
-                using (var stream = await resp.Content.ReadAsStreamAsync().ConfigureAwait(false))
+                using (var stream = await resp.ResponseMessage.Content.ReadAsStreamAsync().ConfigureAwait(false))
                 {
                     return streamHandler(call, stream);
                 }
             }
             catch (Exception ex)
             {
-                string s = await resp.Content.ReadAsStringAsync().ConfigureAwait(false);
+                string s = await resp.ResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
                 throw new FlurlHttpException(call, s, ex);
             }
         }
@@ -80,10 +80,10 @@ namespace Flurl.Http.Xml
         /// <param name="response">The response.</param>
         /// <returns>A Task whose result is an object containing data in the response body.</returns>
         /// <example>x = await url.PostAsync(data).ReceiveXml&lt;T&gt;()</example>
-        public static async Task<T> ReceiveXml<T>(this Task<HttpResponseMessage> response)
+        public static async Task<T> ReceiveXml<T>(this Task<IFlurlResponse> response)
         {
             return await ReceiveFromXmlStream(response, (call, stm) => 
-                call.FlurlRequest.Settings.XmlSerializer().Deserialize<T>(stm));
+                call.Request.Settings.XmlSerializer().Deserialize<T>(stm));
         }
 
         /// <summary>
@@ -92,7 +92,7 @@ namespace Flurl.Http.Xml
         /// <param name="response">The response.</param>
         /// <returns>A Task whose result is an XDocument containing XML data from the response body.</returns>
         /// <example>d = await url.PostAsync(data).ReceiveXDocument()</example>
-        public static async Task<XDocument> ReceiveXDocument(this Task<HttpResponseMessage> response)
+        public static async Task<XDocument> ReceiveXDocument(this Task<IFlurlResponse> response)
         {
             return await ReceiveFromXmlStream(response, (call, stm) =>
             {
@@ -108,7 +108,7 @@ namespace Flurl.Http.Xml
         /// </summary>
         /// <returns>A Task whose result is a collection of XElements from an XDocument containing XML data from the response body.</returns>
         /// <example>d = await url.PostAsync(data).ReceiveXElementsFromXPath(xpathExpression)</example>
-        public static async Task<IEnumerable<XElement>> ReceiveXElementsFromXPath(this Task<HttpResponseMessage> response, string expression)
+        public static async Task<IEnumerable<XElement>> ReceiveXElementsFromXPath(this Task<IFlurlResponse> response, string expression)
         {
             var doc = await response.ReceiveXDocument().ConfigureAwait(false);
             return doc.XPathSelectElements(expression);
@@ -119,7 +119,7 @@ namespace Flurl.Http.Xml
         /// </summary>
         /// <returns>A Task whose result is a collection of XElements from an XDocument containing XML data from the response body.</returns>
         /// <example>d = await url.PostAsync(data).ReceiveXElementsFromXPath(xpathExpression, namespaceResolver)</example>
-        public static async Task<IEnumerable<XElement>> ReceiveXElementsFromXPath(this Task<HttpResponseMessage> response, string expression, IXmlNamespaceResolver resolver)
+        public static async Task<IEnumerable<XElement>> ReceiveXElementsFromXPath(this Task<IFlurlResponse> response, string expression, IXmlNamespaceResolver resolver)
         {
             var doc = await response.ReceiveXDocument().ConfigureAwait(false);
             return doc.XPathSelectElements(expression, resolver);

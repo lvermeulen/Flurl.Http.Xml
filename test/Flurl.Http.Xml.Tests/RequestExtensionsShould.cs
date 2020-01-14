@@ -170,7 +170,7 @@ namespace Flurl.Http.Xml.Tests
                 .PostXmlAsync(new TestModel { Number = 3, Text = "Test" })
                 .ReceiveXmlResponseMessage();
 
-            Assert.Equal(expectedContentType, result?.Content?.Headers?.ContentType?.MediaType);
+            Assert.Equal(expectedContentType, result?.ResponseMessage.Content?.Headers?.ContentType?.MediaType);
         }
 
         [Theory]
