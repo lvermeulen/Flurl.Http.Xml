@@ -29,7 +29,8 @@ namespace Flurl.Http.Xml.Tests
             FlurlHttp.Configure(c => c.HttpClientFactory = new XmlTestModelHttpClientFactory());
 
             var result = await new Url("https://some.url")
-                .GetXmlAsync<TestModel>();
+                .GetXmlAsync<TestModel>()
+                .ConfigureAwait(false);
 
             AssertTestModel(result, 3, "Test");
         }
@@ -40,7 +41,8 @@ namespace Flurl.Http.Xml.Tests
             FlurlHttp.Configure(c => c.HttpClientFactory = new XmlTestModelHttpClientFactory());
 
             var result = await new Url("https://some.url")
-                .GetXDocumentAsync();
+                .GetXDocumentAsync()
+                .ConfigureAwait(false);
 
             AssertXDocument(result, 3, "Test");
         }
@@ -51,7 +53,8 @@ namespace Flurl.Http.Xml.Tests
             FlurlHttp.Configure(c => c.HttpClientFactory = new XmlTestModelHttpClientFactory());
 
             var result = await new Url("https://some.url")
-                .GetXElementsFromXPath("/TestModel");
+                .GetXElementsFromXPath("/TestModel")
+                .ConfigureAwait(false);
 
             AssertXDocument(result.FirstOrDefault()?.Document, 3, "Test");
         }
@@ -62,7 +65,8 @@ namespace Flurl.Http.Xml.Tests
             FlurlHttp.Configure(c => c.HttpClientFactory = new XmlTestModelHttpClientFactory());
 
             var result = await new Url("https://some.url")
-                .GetXElementsFromXPath("/TestModel", new XmlNamespaceManager(new NameTable()));
+                .GetXElementsFromXPath("/TestModel", new XmlNamespaceManager(new NameTable()))
+                .ConfigureAwait(false);
 
             AssertXDocument(result.FirstOrDefault()?.Document, 3, "Test");
         }
@@ -77,7 +81,8 @@ namespace Flurl.Http.Xml.Tests
             var method = HttpMethodByType[methodType];
             var result = await new Url("https://some.url")
                 .SendXmlAsync(method, new TestModel { Number = 3, Text = "Test" })
-                .ReceiveXml<TestModel>();
+                .ReceiveXml<TestModel>()
+                .ConfigureAwait(false);
 
             AssertTestModel(result, 3, "Test");
         }
@@ -92,7 +97,8 @@ namespace Flurl.Http.Xml.Tests
             var method = HttpMethodByType[methodType];
             var result = await new Url("https://some.url")
                 .SendXmlAsync(method, new TestModel { Number = 3, Text = "Test" })
-                .ReceiveXDocument();
+                .ReceiveXDocument()
+                .ConfigureAwait(false);
 
             AssertXDocument(result, 3, "Test");
         }
@@ -104,7 +110,8 @@ namespace Flurl.Http.Xml.Tests
 
             var result = await new Url("https://some.url")
                 .PostXmlAsync(new TestModel { Number = 3, Text = "Test" })
-                .ReceiveXml<TestModel>();
+                .ReceiveXml<TestModel>()
+                .ConfigureAwait(false);
 
             AssertTestModel(result, 3, "Test");
         }
@@ -116,7 +123,8 @@ namespace Flurl.Http.Xml.Tests
 
             var result = await new Url("https://some.url")
                 .PostXmlAsync(new TestModel { Number = 3, Text = "Test" })
-                .ReceiveXDocument();
+                .ReceiveXDocument()
+                .ConfigureAwait(false);
 
             AssertXDocument(result, 3, "Test");
         }
@@ -128,7 +136,8 @@ namespace Flurl.Http.Xml.Tests
 
             var result = await new Url("https://some.url")
                 .PutXmlAsync(new TestModel { Number = 3, Text = "Test" })
-                .ReceiveXml<TestModel>();
+                .ReceiveXml<TestModel>()
+                .ConfigureAwait(false);
 
             AssertTestModel(result, 3, "Test");
         }
@@ -140,7 +149,8 @@ namespace Flurl.Http.Xml.Tests
 
             var result = await new Url("https://some.url")
                 .PutXmlAsync(new TestModel { Number = 3, Text = "Test" })
-                .ReceiveXDocument();
+                .ReceiveXDocument()
+                .ConfigureAwait(false);
 
             AssertXDocument(result, 3, "Test");
         }
