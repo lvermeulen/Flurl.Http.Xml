@@ -30,7 +30,7 @@ namespace Flurl.Http.Xml
             if (request.Headers.Accept.Any())
             {
                 // return media type of first accepted media type containing "xml", else of first accepted media type
-                var acceptHeader = request.Headers.Accept.FirstOrDefault(x => x.MediaType.IndexOf("xml", StringComparison.OrdinalIgnoreCase) >= 0) 
+                var acceptHeader = request.Headers.Accept.FirstOrDefault(x => x.MediaType.IndexOf("xml", StringComparison.OrdinalIgnoreCase) >= 0)
                     ?? request.Headers.Accept.FirstOrDefault();
 
                 return acceptHeader?.MediaType;
@@ -82,7 +82,7 @@ namespace Flurl.Http.Xml
         /// <example>x = await url.PostAsync(data).ReceiveXml&lt;T&gt;()</example>
         public static async Task<T> ReceiveXml<T>(this Task<HttpResponseMessage> response)
         {
-            return await ReceiveFromXmlStream(response, (call, stm) => 
+            return await ReceiveFromXmlStream(response, (call, stm) =>
                 call.FlurlRequest.Settings.XmlSerializer().Deserialize<T>(stm));
         }
 
