@@ -24,7 +24,7 @@ namespace Flurl.Http.Xml
         /// <returns>
         /// A Task whose result is the XML response body deserialized to an object of type T.
         /// </returns>
-        public static Task<T> GetXmlAsync<T>(this IFlurlRequest request, 
+        public static Task<T> GetXmlAsync<T>(this IFlurlRequest request,
             CancellationToken cancellationToken = default, HttpCompletionOption completionOption = HttpCompletionOption.ResponseContentRead)
         {
             return request.SendAsync(HttpMethod.Get, null, cancellationToken, completionOption).ReceiveXml<T>();
@@ -39,7 +39,7 @@ namespace Flurl.Http.Xml
         /// <returns>
         /// A Task whose result is the XML response body parsed into an XDocument.
         /// </returns>
-        public static Task<XDocument> GetXDocumentAsync(this IFlurlRequest request, 
+        public static Task<XDocument> GetXDocumentAsync(this IFlurlRequest request,
             CancellationToken cancellationToken = default, HttpCompletionOption completionOption = HttpCompletionOption.ResponseContentRead)
         {
             return request.SendAsync(HttpMethod.Get, null, cancellationToken, completionOption).ReceiveXDocument();
@@ -55,7 +55,7 @@ namespace Flurl.Http.Xml
         /// <returns>
         /// A Task whose result is the XML response body parsed into a collection of XElements.
         /// </returns>
-        public static Task<IEnumerable<XElement>> GetXElementsFromXPath(this IFlurlRequest request, string expression, 
+        public static Task<IEnumerable<XElement>> GetXElementsFromXPath(this IFlurlRequest request, string expression,
             CancellationToken cancellationToken = default, HttpCompletionOption completionOption = HttpCompletionOption.ResponseContentRead)
         {
             return request.SendAsync(HttpMethod.Get, null, cancellationToken, completionOption).ReceiveXElementsFromXPath(expression);
@@ -72,7 +72,7 @@ namespace Flurl.Http.Xml
         /// <returns>
         /// A Task whose result is the XML response body parsed into a collection of XElements.
         /// </returns>
-        public static Task<IEnumerable<XElement>> GetXElementsFromXPath(this IFlurlRequest request, string expression, IXmlNamespaceResolver resolver, 
+        public static Task<IEnumerable<XElement>> GetXElementsFromXPath(this IFlurlRequest request, string expression, IXmlNamespaceResolver resolver,
             CancellationToken cancellationToken = default, HttpCompletionOption completionOption = HttpCompletionOption.ResponseContentRead)
         {
             return request.SendAsync(HttpMethod.Get, null, cancellationToken, completionOption).ReceiveXElementsFromXPath(expression, resolver);
@@ -97,7 +97,7 @@ namespace Flurl.Http.Xml
                 .Select(x => x.Trim())
                 .ToList();
 
-            return mediaTypes.FirstOrDefault(x => x.IndexOf("xml", StringComparison.OrdinalIgnoreCase) >= 0) 
+            return mediaTypes.FirstOrDefault(x => x.IndexOf("xml", StringComparison.OrdinalIgnoreCase) >= 0)
                 ?? mediaTypes.FirstOrDefault();
         }
 
