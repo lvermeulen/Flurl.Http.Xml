@@ -81,7 +81,7 @@ namespace Flurl.Http.Xml
         private static string GetMediaType(this IHttpSettingsContainer request)
         {
             var acceptHeaders = request.Headers
-                .Where(x => x.Key == "Accept")
+                .Where(x => x.Name == "Accept")
                 .ToList();
 
             if (!acceptHeaders.Any() || acceptHeaders.All(x => x.Value == null))
@@ -112,11 +112,11 @@ namespace Flurl.Http.Xml
         /// <returns>
         /// A Task whose result is the received IFlurlResponse.
         /// </returns>
-        public static async Task<IFlurlResponse> SendXmlAsync(this IFlurlRequest request, HttpMethod httpMethod, object data, 
+        public static Task<IFlurlResponse> SendXmlAsync(this IFlurlRequest request, HttpMethod httpMethod, object data, 
             CancellationToken cancellationToken = default, HttpCompletionOption completionOption = HttpCompletionOption.ResponseContentRead)
         {
             var content = new CapturedXmlContent(request.Settings.XmlSerializer().Serialize(data), request.GetMediaType());
-            return await request.SendAsync(httpMethod, content, cancellationToken, completionOption);
+            return request.SendAsync(httpMethod, content, cancellationToken, completionOption);
         }
 
         /// <summary>

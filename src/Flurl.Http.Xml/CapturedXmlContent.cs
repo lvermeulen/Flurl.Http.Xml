@@ -1,5 +1,4 @@
-﻿using System.Text;
-using Flurl.Http.Content;
+﻿using Flurl.Http.Content;
 
 namespace Flurl.Http.Xml
 {
@@ -14,6 +13,6 @@ namespace Flurl.Http.Xml
         /// </summary>
         /// <param name="xml">The XML.</param>
         /// <param name="mediaType">The media-type.</param>
-        public CapturedXmlContent(string xml, string mediaType) : base(xml, Encoding.UTF8, mediaType) { }
+        public CapturedXmlContent(string xml, string mediaType) : base(xml, mediaType) { }
     }
 }
