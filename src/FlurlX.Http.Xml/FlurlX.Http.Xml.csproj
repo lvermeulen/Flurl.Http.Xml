@@ -1,24 +1,41 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;netstandard2.1;net461;net472</TargetFrameworks>
+    <TargetFrameworks>net8.0</TargetFrameworks>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Authors>Luk Vermeulen</Authors>
-    <PackageLicenseUrl>https://github.com/lvermeulen/Flurl.Http.Xml/blob/master/LICENSE</PackageLicenseUrl>
-    <PackageProjectUrl>https://github.com/lvermeulen/Flurl.Http.Xml</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/renanaragao/FlurlX.Http.Xml/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/renanaragao/FlurlX.Http.Xml</PackageProjectUrl>
     <Copyright>Copyright 2016-2020 by Luk Vermeulen. All rights reserved.</Copyright>
-    <RepositoryUrl>https://github.com/lvermeulen/Flurl.Http.Xml</RepositoryUrl>
+    <RepositoryUrl>https://github.com/renanaragao/FlurlX.Http.Xml</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>Flurl;Http;Xml</PackageTags>
     <PackageIconUrl>http://i.imgur.com/llEKpRL.png?1</PackageIconUrl>
     <Description>XML extensions to Flurl.Http</Description>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.0|AnyCPU'">
+    <WarningLevel>9999</WarningLevel>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.0|AnyCPU'">
+    <WarningLevel>9999</WarningLevel>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.1|AnyCPU'">
+    <WarningLevel>9999</WarningLevel>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.1|AnyCPU'">
+    <WarningLevel>9999</WarningLevel>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Flurl.Http" Version="3.0.0" />
+    <PackageReference Include="Flurl.Http" Version="4.0.0" />
     <PackageReference Include="System.Xml.XmlSerializer" Version="4.3.0" />
   </ItemGroup>
 

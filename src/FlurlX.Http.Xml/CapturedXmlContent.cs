@@ -1,6 +1,6 @@
 ﻿using Flurl.Http.Content;
 
-namespace Flurl.Http.Xml
+namespace FlurlX.Http.Xml
 {
     /// <summary>
     /// Provides HTTP content based on a serialized XML object, with the XML string captured to a property

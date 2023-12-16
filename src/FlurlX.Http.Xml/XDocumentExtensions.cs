@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using System.Xml.Linq;
 
-namespace Flurl.Http.Xml
+namespace FlurlX.Http.Xml
 {
     /// <summary>
     /// XDocumentExtensions
