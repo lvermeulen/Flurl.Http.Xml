@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Text;
 
-namespace Flurl.Http.Xml
+namespace FlurlX.Http.Xml
 {
     /// <summary>
     /// Utf8StringWriter

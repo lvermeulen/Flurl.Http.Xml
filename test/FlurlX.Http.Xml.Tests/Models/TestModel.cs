@@ -1,4 +1,4 @@
-﻿namespace Flurl.Http.Xml.Tests.Models
+﻿namespace FlurlX.Http.Xml.Tests.Models
 {
     public class TestModel
     {

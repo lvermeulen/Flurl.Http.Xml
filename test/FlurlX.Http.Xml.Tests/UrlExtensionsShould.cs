@@ -2,22 +2,23 @@
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
-using Flurl.Http.Xml.Tests.Factories;
-using Flurl.Http.Xml.Tests.Models;
+using Flurl;
+using Flurl.Http.Testing;
+using FlurlX.Http.Xml.Tests.Models;
 using Xunit;
 using Xunit.Extensions.Ordering;
 
-namespace Flurl.Http.Xml.Tests
+namespace FlurlX.Http.Xml.Tests
 {
     public class UrlExtensionsShould : TestBase
     {
-        private void AssertTestModel(TestModel testModel, int expectedNumber, string expectedText)
+        private static void AssertTestModel(TestModel testModel, int expectedNumber, string expectedText)
         {
             Assert.Equal(expectedNumber, testModel.Number);
             Assert.Equal(expectedText, testModel.Text);
         }
 
-        private void AssertXDocument(XDocument document, int expectedNumber, string expectedText)
+        private static void AssertXDocument(XDocument document, int expectedNumber, string expectedText)
         {
             Assert.Equal(expectedNumber.ToString(), document?.Element("TestModel")?.Element("Number")?.Value);
             Assert.Equal(expectedText, document?.Element("TestModel")?.Element("Text")?.Value);
@@ -26,7 +27,9 @@ namespace Flurl.Http.Xml.Tests
         [Fact, Order(3)]
         public async Task GetXmlAsync()
         {
-            FlurlHttp.Configure(c => c.HttpClientFactory = new XmlTestModelHttpClientFactory());
+            using var httpTest = new HttpTest();
+
+            httpTest.RespondWith(REQUEST_BODY_XML);
 
             var result = await new Url("https://some.url")
                 .GetXmlAsync<TestModel>()
@@ -38,7 +41,9 @@ namespace Flurl.Http.Xml.Tests
         [Fact, Order(3)]
         public async Task GetXDocumentAsync()
         {
-            FlurlHttp.Configure(c => c.HttpClientFactory = new XmlTestModelHttpClientFactory());
+            using var httpTest = new HttpTest();
+
+            httpTest.RespondWith(REQUEST_BODY_XML);
 
             var result = await new Url("https://some.url")
                 .GetXDocumentAsync()
@@ -50,7 +55,9 @@ namespace Flurl.Http.Xml.Tests
         [Fact, Order(3)]
         public async Task GetXElementsFromXPathAsync()
         {
-            FlurlHttp.Configure(c => c.HttpClientFactory = new XmlTestModelHttpClientFactory());
+            using var httpTest = new HttpTest();
+
+            httpTest.RespondWith(REQUEST_BODY_XML);
 
             var result = await new Url("https://some.url")
                 .GetXElementsFromXPath("/TestModel")
@@ -62,7 +69,9 @@ namespace Flurl.Http.Xml.Tests
         [Fact, Order(3)]
         public async Task GetXElementsFromXPathNamespaceResolverAsync()
         {
-            FlurlHttp.Configure(c => c.HttpClientFactory = new XmlTestModelHttpClientFactory());
+            using var httpTest = new HttpTest();
+
+            httpTest.RespondWith(REQUEST_BODY_XML);
 
             var result = await new Url("https://some.url")
                 .GetXElementsFromXPath("/TestModel", new XmlNamespaceManager(new NameTable()))
@@ -76,7 +85,9 @@ namespace Flurl.Http.Xml.Tests
         [InlineData(HttpMethodTypes.Put)]
         public async Task SendXmlToModelAsync(HttpMethodTypes methodType)
         {
-            FlurlHttp.Configure(c => c.HttpClientFactory = new EchoHttpClientFactory());
+            using var httpTest = new HttpTest();
+
+            httpTest.RespondWith(REQUEST_BODY_XML);
 
             var method = HttpMethodByType[methodType];
             var result = await new Url("https://some.url")
@@ -92,7 +103,9 @@ namespace Flurl.Http.Xml.Tests
         [InlineData(HttpMethodTypes.Put)]
         public async Task SendXmlToXDocumentAsync(HttpMethodTypes methodType)
         {
-            FlurlHttp.Configure(c => c.HttpClientFactory = new EchoHttpClientFactory());
+            using var httpTest = new HttpTest();
+
+            httpTest.RespondWith(REQUEST_BODY_XML);
 
             var method = HttpMethodByType[methodType];
             var result = await new Url("https://some.url")
@@ -106,7 +119,9 @@ namespace Flurl.Http.Xml.Tests
         [Fact]
         public async Task PostXmlToModelAsync()
         {
-            FlurlHttp.Configure(c => c.HttpClientFactory = new EchoHttpClientFactory());
+            using var httpTest = new HttpTest();
+
+            httpTest.RespondWith(REQUEST_BODY_XML);
 
             var result = await new Url("https://some.url")
                 .PostXmlAsync(new TestModel { Number = 3, Text = "Test" })
@@ -119,7 +134,9 @@ namespace Flurl.Http.Xml.Tests
         [Fact]
         public async Task PostXmlToXDocumentAsync()
         {
-            FlurlHttp.Configure(c => c.HttpClientFactory = new EchoHttpClientFactory());
+            using var httpTest = new HttpTest();
+
+            httpTest.RespondWith(REQUEST_BODY_XML);
 
             var result = await new Url("https://some.url")
                 .PostXmlAsync(new TestModel { Number = 3, Text = "Test" })
@@ -132,7 +149,9 @@ namespace Flurl.Http.Xml.Tests
         [Fact]
         public async Task PutXmlToModelAsync()
         {
-            FlurlHttp.Configure(c => c.HttpClientFactory = new EchoHttpClientFactory());
+            using var httpTest = new HttpTest();
+
+            httpTest.RespondWith(REQUEST_BODY_XML);
 
             var result = await new Url("https://some.url")
                 .PutXmlAsync(new TestModel { Number = 3, Text = "Test" })
@@ -145,7 +164,9 @@ namespace Flurl.Http.Xml.Tests
         [Fact]
         public async Task PutXmlToXDocumentAsync()
         {
-            FlurlHttp.Configure(c => c.HttpClientFactory = new EchoHttpClientFactory());
+            using var httpTest = new HttpTest();
+
+            httpTest.RespondWith(REQUEST_BODY_XML);
 
             var result = await new Url("https://some.url")
                 .PutXmlAsync(new TestModel { Number = 3, Text = "Test" })

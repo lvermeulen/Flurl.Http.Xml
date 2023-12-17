@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Flurl.Http;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -9,35 +10,37 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Xml.XPath;
 
-namespace Flurl.Http.Xml
+namespace FlurlX.Http.Xml
 {
     /// <summary>
     /// IFlurlResponseExtensions
     /// </summary>
     public static class IFlurlResponseExtensions
     {
-        private static FlurlCall GetHttpCall(HttpRequestMessage request)
+        private static FlurlCall? GetHttpCall(HttpRequestMessage? request)
         {
-            if (request?.Properties != null && request.Properties.TryGetValue("FlurlHttpCall", out var obj) && obj is FlurlCall call)
+            if (request?.Options != null && request.Options.TryGetValue(new HttpRequestOptionsKey<object>("FlurlHttpCall"), out object? obj) && obj is FlurlCall call)
             {
                 return call;
             }
             return null;
         }
 
-        private static string GetMediaType(HttpRequestMessage request)
+        private static string GetMediaType(HttpRequestMessage? request)
         {
-            if (request.Headers.Accept.Any())
+            const string defaultMediaType = "application/xml";
+
+            if (request?.Headers.Accept.Count != 0)
             {
                 // return media type of first accepted media type containing "xml", else of first accepted media type
-                var acceptHeader = request.Headers.Accept.FirstOrDefault(x => x.MediaType.IndexOf("xml", StringComparison.OrdinalIgnoreCase) >= 0) 
-                    ?? request.Headers.Accept.FirstOrDefault();
+                var acceptHeader = request?.Headers.Accept.FirstOrDefault(x => x.MediaType?.IndexOf("xml", StringComparison.OrdinalIgnoreCase) >= 0)
+                    ?? request?.Headers.Accept.FirstOrDefault();
 
-                return acceptHeader?.MediaType;
+                return acceptHeader?.MediaType ?? defaultMediaType;
             }
 
             // no accepted media type present, return default
-            return "application/xml";
+            return defaultMediaType;
         }
 
         /// <summary>
@@ -54,17 +57,15 @@ namespace Flurl.Http.Xml
             return response;
         }
 
-        private static async Task<T> ReceiveFromXmlStream<T>(this Task<IFlurlResponse> response, Func<FlurlCall, Stream, T> streamHandler)
+        private static async Task<T> ReceiveFromXmlStream<T>(this Task<IFlurlResponse> response, Func<FlurlCall?, Stream, T> streamHandler)
         {
             var resp = await ReceiveXmlResponseMessage(response);
             var call = GetHttpCall(resp.ResponseMessage.RequestMessage);
 
             try
             {
-                using (var stream = await resp.ResponseMessage.Content.ReadAsStreamAsync().ConfigureAwait(false))
-                {
-                    return streamHandler(call, stream);
-                }
+                using var stream = await resp.ResponseMessage.Content.ReadAsStreamAsync().ConfigureAwait(false);
+                return streamHandler(call, stream);
             }
             catch (Exception ex)
             {
@@ -80,11 +81,8 @@ namespace Flurl.Http.Xml
         /// <param name="response">The response.</param>
         /// <returns>A Task whose result is an object containing data in the response body.</returns>
         /// <example>x = await url.PostAsync(data).ReceiveXml&lt;T&gt;()</example>
-        public static async Task<T> ReceiveXml<T>(this Task<IFlurlResponse> response)
-        {
-            return await ReceiveFromXmlStream(response, (call, stm) => 
-                call.Request.Settings.XmlSerializer().Deserialize<T>(stm));
-        }
+        public static Task<T?> ReceiveXml<T>(this Task<IFlurlResponse> response)
+        => ReceiveFromXmlStream(response, (call, stm) => FlurlHttpSettingsExtensions.XmlSerializer().Deserialize<T>(stm));
 
         /// <summary>
         /// Parses XML-formatted HTTP response body into an XDocument. Intended to chain off an async call.
@@ -92,16 +90,12 @@ namespace Flurl.Http.Xml
         /// <param name="response">The response.</param>
         /// <returns>A Task whose result is an XDocument containing XML data from the response body.</returns>
         /// <example>d = await url.PostAsync(data).ReceiveXDocument()</example>
-        public static async Task<XDocument> ReceiveXDocument(this Task<IFlurlResponse> response)
+        public static Task<XDocument> ReceiveXDocument(this Task<IFlurlResponse> response)
+        => ReceiveFromXmlStream(response, (call, stm) =>
         {
-            return await ReceiveFromXmlStream(response, (call, stm) =>
-            {
-                using (var streamReader = new StreamReader(stm))
-                {
-                    return XDocument.Parse(streamReader.ReadToEnd());
-                }
-            });
-        }
+            using var streamReader = new StreamReader(stm);
+            return XDocument.Parse(streamReader.ReadToEnd());
+        });
 
         /// <summary>
         /// Parses XML-formatted HTTP response body into a collection of XElements. Intended to chain off an async call.
