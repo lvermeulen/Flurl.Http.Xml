@@ -5,7 +5,7 @@
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Authors>Luk Vermeulen</Authors>
-    <PackageLicenseUrl>https://github.com/renanaragao/FlurlX.Http.Xml/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageLicenseUrl>https://github.com/renanaragao/FlurlX.Http.Xml/blob/main/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/renanaragao/FlurlX.Http.Xml</PackageProjectUrl>
     <Copyright>Copyright 2016-2020 by Luk Vermeulen. All rights reserved.</Copyright>
     <RepositoryUrl>https://github.com/renanaragao/FlurlX.Http.Xml</RepositoryUrl>

@@ -1,9 +1,8 @@
 ![Icon](http://i.imgur.com/llEKpRL.png?1) 
 # FlurlX.Http.Xml
-[![Build status](https://ci.appveyor.com/api/projects/status/16qwl13xsaylb450?svg=true)](https://ci.appveyor.com/project/lvermeulen/flurl-http-xml) 
-[![license](https://img.shields.io/github/license/lvermeulen/Flurl.Http.Xml.svg?maxAge=2592000)](https://github.com/lvermeulen/Flurl.Http.Xml/blob/master/LICENSE) 
-[![NuGet](https://img.shields.io/nuget/v/Flurl.Http.Xml.svg?maxAge=86400)](https://www.nuget.org/packages/Flurl.Http.Xml/) 
-![downloads](https://img.shields.io/nuget/dt/Flurl.Http.Xml)
+[![license](https://img.shields.io/github/license/renanaragao/FlurlX.Http.Xml.svg?maxAge=2592000)](https://github.com/lvermeulen/Flurl.Http.Xml/blob/master/LICENSE) 
+[![NuGet](https://img.shields.io/nuget/v/FlurlX.Http.Xml.svg?maxAge=86400)](https://www.nuget.org/packages/Flurl.Http.Xml/) 
+![downloads](https://img.shields.io/nuget/dt/FlurlX.Http.Xml)
 ![](https://img.shields.io/badge/.net-8.0.100-yellowgreen.svg) 
 
 XML extension to the excellent [Flurl 4](https://github.com/tmenier/Flurl) library
