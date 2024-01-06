@@ -1,34 +1,33 @@
 ﻿using System.IO;
 using System.Text;
 
-namespace Flurl.Http.Xml
+namespace Flurl.Http.Xml;
+
+/// <summary>
+/// Utf8StringWriter
+/// </summary>
+/// <seealso cref="System.IO.StringWriter" />
+internal class Utf8StringWriter : StringWriter
 {
     /// <summary>
-    /// Utf8StringWriter
+    /// Initializes a new instance of the <see cref="Utf8StringWriter"/> class.
     /// </summary>
-    /// <seealso cref="System.IO.StringWriter" />
-    internal class Utf8StringWriter : StringWriter
-    {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Utf8StringWriter"/> class.
-        /// </summary>
-        public Utf8StringWriter()
-        { }
+    public Utf8StringWriter()
+    { }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Utf8StringWriter"/> class.
-        /// </summary>
-        /// <param name="builder">The builder.</param>
-        public Utf8StringWriter(StringBuilder builder)
-            : base(builder)
-        { }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Utf8StringWriter"/> class.
+    /// </summary>
+    /// <param name="builder">The builder.</param>
+    public Utf8StringWriter(StringBuilder builder)
+        : base(builder)
+    { }
 
-        /// <summary>
-        /// Gets the encoding.
-        /// </summary>
-        /// <value>
-        /// The encoding.
-        /// </value>
-        public override Encoding Encoding => Encoding.UTF8;
-    }
+    /// <summary>
+    /// Gets the encoding.
+    /// </summary>
+    /// <value>
+    /// The encoding.
+    /// </value>
+    public override Encoding Encoding => Encoding.UTF8;
 }

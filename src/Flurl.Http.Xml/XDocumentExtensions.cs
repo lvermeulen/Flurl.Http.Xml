@@ -1,25 +1,25 @@
 ﻿using System.Text;
 using System.Xml.Linq;
 
-namespace Flurl.Http.Xml
+namespace Flurl.Http.Xml;
+
+/// <summary>
+/// XDocumentExtensions
+/// </summary>
+public static class XDocumentExtensions
 {
     /// <summary>
-    /// XDocumentExtensions
+    /// To the string with declaration.
     /// </summary>
-    public static class XDocumentExtensions
+    /// <param name="doc">The document.</param>
+    public static string ToStringWithDeclaration(this XDocument doc)
     {
-        /// <summary>
-        /// To the string with declaration.
-        /// </summary>
-        /// <param name="doc">The document.</param>
-        public static string ToStringWithDeclaration(this XDocument doc)
+        var sb = new StringBuilder();
+        using (var writer = new Utf8StringWriter(sb))
         {
-            var sb = new StringBuilder();
-            using (var writer = new Utf8StringWriter(sb))
-            {
-                doc.Save(writer);
-            }
-            return sb.ToString();
+            doc.Save(writer);
         }
+
+        return sb.ToString();
     }
 }
