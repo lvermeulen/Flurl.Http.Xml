@@ -1,11 +1,11 @@
-version: 2.0.0-{build}
+version: 4.0.0-{build}
 branches:
   only:
   - main
   - development
 pull_requests:
   do_not_increment_build_number: true
-image: Visual Studio 2019
+image: Visual Studio 2022
 build_script:
 - ps: .\build\build.ps1 $env:APPVEYOR_BUILD_VERSION $env:APPVEYOR_REPO_TAG_NAME
 #before_test:
@@ -16,7 +16,7 @@ deploy:
 - provider: NuGet
   api_key:
     secure: yc/gQNTv1/CbW+NYNpSF0SEOAAVVPr96aLb7kWWE764XGrDlG/ijBXyzQ+g6EnFN
-  skip_symbols: false
+  skip_symbols: true
   artifact: /.*(\.|\.s)nupkg/
   on:
       appveyor_repo_tag: true       # deploy on tag push only

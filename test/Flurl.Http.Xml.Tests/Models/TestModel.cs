@@ -1,8 +1,7 @@
-﻿namespace Flurl.Http.Xml.Tests.Models
+﻿namespace Flurl.Http.Xml.Tests.Models;
+
+public class TestModel
 {
-    public class TestModel
-    {
-        public int Number { get; set; }
-        public string Text { get; set; }
-    }
+    public int Number { get; set; }
+    public string Text { get; set; }
 }
