@@ -6,33 +6,27 @@
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Authors>Luk Vermeulen</Authors>
-    <PackageLicenseUrl>https://github.com/lvermeulen/Flurl.Http.Xml/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/lvermeulen/Flurl.Http.Xml</PackageProjectUrl>
     <Copyright>Copyright 2016-2020 by Luk Vermeulen. All rights reserved.</Copyright>
     <RepositoryUrl>https://github.com/lvermeulen/Flurl.Http.Xml</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>Flurl;Http;Xml</PackageTags>
-    <PackageIconUrl>http://i.imgur.com/llEKpRL.png?1</PackageIconUrl>
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <Description>XML extensions to Flurl.Http</Description>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Flurl.Http" Version="4.0.0" />
-    <PackageReference Include="System.Xml.XmlSerializer" Version="4.3.0" />
   </ItemGroup>
 
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net45'">
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System" />
-    <Reference Include="Microsoft.CSharp" />
-  </ItemGroup>
-
-  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.4'">
-    <PackageReference Include="System.Xml.XPath.XDocument" Version="4.3.0" />
+  <ItemGroup>
+    <None Include="..\..\README.md" Pack="true" Visible="false" PackagePath="README.md"/>
+    <None Include="..\..\assets\noun_320630_cc.png" Pack="true" Visible="false" PackagePath="icon.png"/>
   </ItemGroup>
 
 </Project>
