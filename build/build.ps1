@@ -17,7 +17,7 @@ foreach ($src in ls $PSScriptRoot\..\src/*) {
         $version = $BuildVersionNumber
     }
 
-    & dotnet build -c Release
+    & dotnet build -c Release /p:ContinuousIntegrationBuild=True
     & dotnet pack -c Release --include-symbols -o ..\..\artifacts --no-build /p:PackageVersion=$version
     if($LASTEXITCODE -ne 0) { exit 1 }    
 
